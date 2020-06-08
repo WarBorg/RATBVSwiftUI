@@ -81,6 +81,7 @@
 		911DB4A02486FDD80058C15F /* RATBVSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				919E98DF248ECFF300608EF0 /* Views */,
 				911DB4A12486FDD80058C15F /* AppDelegate.swift */,
 				911DB4A32486FDD80058C15F /* SceneDelegate.swift */,
 				911DB4A82486FDD90058C15F /* ContentView.swift */,
@@ -108,6 +109,13 @@
 				911DB4BD2486FDE60058C15F /* Info.plist */,
 			);
 			path = RATBVSwiftUITests;
+			sourceTree = "<group>";
+		};
+		919E98DF248ECFF300608EF0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
