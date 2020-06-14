@@ -15,6 +15,10 @@
 		911DB4AE2486FDE40058C15F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 911DB4AD2486FDE40058C15F /* Preview Assets.xcassets */; };
 		911DB4B12486FDE40058C15F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 911DB4AF2486FDE40058C15F /* LaunchScreen.storyboard */; };
 		911DB4BC2486FDE60058C15F /* RATBVSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911DB4BB2486FDE60058C15F /* RATBVSwiftUITests.swift */; };
+		919E98E1249035C000608EF0 /* BusLineListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98E0249035C000608EF0 /* BusLineListItemView.swift */; };
+		919E98E324958B8900608EF0 /* BusLineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98E224958B8900608EF0 /* BusLineListView.swift */; };
+		919E98E52495966C00608EF0 /* BusStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98E42495966C00608EF0 /* BusStationListView.swift */; };
+		919E98E72495979A00608EF0 /* BusTimetableListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98E62495979A00608EF0 /* BusTimetableListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,10 @@
 		911DB4B72486FDE60058C15F /* RATBVSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RATBVSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		911DB4BB2486FDE60058C15F /* RATBVSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RATBVSwiftUITests.swift; sourceTree = "<group>"; };
 		911DB4BD2486FDE60058C15F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		919E98E0249035C000608EF0 /* BusLineListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLineListItemView.swift; sourceTree = "<group>"; };
+		919E98E224958B8900608EF0 /* BusLineListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLineListView.swift; sourceTree = "<group>"; };
+		919E98E42495966C00608EF0 /* BusStationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStationListView.swift; sourceTree = "<group>"; };
+		919E98E62495979A00608EF0 /* BusTimetableListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTimetableListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +122,10 @@
 		919E98DF248ECFF300608EF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				919E98E0249035C000608EF0 /* BusLineListItemView.swift */,
+				919E98E224958B8900608EF0 /* BusLineListView.swift */,
+				919E98E42495966C00608EF0 /* BusStationListView.swift */,
+				919E98E62495979A00608EF0 /* BusTimetableListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -220,7 +232,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				911DB4A72486FDD90058C15F /* RATBVSwiftUI.xcdatamodeld in Sources */,
+				919E98E1249035C000608EF0 /* BusLineListItemView.swift in Sources */,
+				919E98E52495966C00608EF0 /* BusStationListView.swift in Sources */,
 				911DB4A22486FDD80058C15F /* AppDelegate.swift in Sources */,
+				919E98E324958B8900608EF0 /* BusLineListView.swift in Sources */,
+				919E98E72495979A00608EF0 /* BusTimetableListView.swift in Sources */,
 				911DB4A92486FDD90058C15F /* ContentView.swift in Sources */,
 				911DB4A42486FDD80058C15F /* SceneDelegate.swift in Sources */,
 			);
