@@ -15,10 +15,13 @@
 		911DB4AE2486FDE40058C15F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 911DB4AD2486FDE40058C15F /* Preview Assets.xcassets */; };
 		911DB4B12486FDE40058C15F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 911DB4AF2486FDE40058C15F /* LaunchScreen.storyboard */; };
 		911DB4BC2486FDE60058C15F /* RATBVSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911DB4BB2486FDE60058C15F /* RATBVSwiftUITests.swift */; };
-		919E98E1249035C000608EF0 /* BusLineListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98E0249035C000608EF0 /* BusLineListItemView.swift */; };
+		919E98E1249035C000608EF0 /* BusLineCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98E0249035C000608EF0 /* BusLineCellView.swift */; };
 		919E98E324958B8900608EF0 /* BusLineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98E224958B8900608EF0 /* BusLineListView.swift */; };
 		919E98E52495966C00608EF0 /* BusStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98E42495966C00608EF0 /* BusStationListView.swift */; };
 		919E98E72495979A00608EF0 /* BusTimetableListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98E62495979A00608EF0 /* BusTimetableListView.swift */; };
+		919E98F2249659E000608EF0 /* BusLinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98F1249659E000608EF0 /* BusLinesView.swift */; };
+		919E98F4249664D700608EF0 /* BusTimetableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98F3249664D700608EF0 /* BusTimetableCellView.swift */; };
+		919E98F62496650100608EF0 /* BusTimetablesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98F52496650100608EF0 /* BusTimetablesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,10 +47,13 @@
 		911DB4B72486FDE60058C15F /* RATBVSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RATBVSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		911DB4BB2486FDE60058C15F /* RATBVSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RATBVSwiftUITests.swift; sourceTree = "<group>"; };
 		911DB4BD2486FDE60058C15F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		919E98E0249035C000608EF0 /* BusLineListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLineListItemView.swift; sourceTree = "<group>"; };
+		919E98E0249035C000608EF0 /* BusLineCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLineCellView.swift; sourceTree = "<group>"; };
 		919E98E224958B8900608EF0 /* BusLineListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLineListView.swift; sourceTree = "<group>"; };
 		919E98E42495966C00608EF0 /* BusStationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStationListView.swift; sourceTree = "<group>"; };
 		919E98E62495979A00608EF0 /* BusTimetableListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTimetableListView.swift; sourceTree = "<group>"; };
+		919E98F1249659E000608EF0 /* BusLinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLinesView.swift; sourceTree = "<group>"; };
+		919E98F3249664D700608EF0 /* BusTimetableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTimetableCellView.swift; sourceTree = "<group>"; };
+		919E98F52496650100608EF0 /* BusTimetablesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTimetablesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,25 +95,16 @@
 		911DB4A02486FDD80058C15F /* RATBVSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				919E98DF248ECFF300608EF0 /* Views */,
+				919E98ED2496591300608EF0 /* Persistance */,
+				919E98EF2496598E00608EF0 /* Models */,
+				919E98F02496599E00608EF0 /* Services */,
+				919E98E82496585000608EF0 /* UI */,
 				911DB4A12486FDD80058C15F /* AppDelegate.swift */,
 				911DB4A32486FDD80058C15F /* SceneDelegate.swift */,
 				911DB4A82486FDD90058C15F /* ContentView.swift */,
-				911DB4AA2486FDE40058C15F /* Assets.xcassets */,
-				911DB4AF2486FDE40058C15F /* LaunchScreen.storyboard */,
-				911DB4B22486FDE40058C15F /* Info.plist */,
-				911DB4A52486FDD90058C15F /* RATBVSwiftUI.xcdatamodeld */,
-				911DB4AC2486FDE40058C15F /* Preview Content */,
+				919E98EE2496594000608EF0 /* Resources */,
 			);
 			path = RATBVSwiftUI;
-			sourceTree = "<group>";
-		};
-		911DB4AC2486FDE40058C15F /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				911DB4AD2486FDE40058C15F /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		911DB4BA2486FDE60058C15F /* RATBVSwiftUITests */ = {
@@ -122,12 +119,88 @@
 		919E98DF248ECFF300608EF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				919E98E0249035C000608EF0 /* BusLineListItemView.swift */,
-				919E98E224958B8900608EF0 /* BusLineListView.swift */,
-				919E98E42495966C00608EF0 /* BusStationListView.swift */,
-				919E98E62495979A00608EF0 /* BusTimetableListView.swift */,
+				919E98EA249658B100608EF0 /* BusLines */,
+				919E98EB249658BF00608EF0 /* BusStations */,
+				919E98EC249658CD00608EF0 /* BusTimetables */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		919E98E82496585000608EF0 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				919E98E9249658A100608EF0 /* ViewModels */,
+				919E98DF248ECFF300608EF0 /* Views */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		919E98E9249658A100608EF0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		919E98EA249658B100608EF0 /* BusLines */ = {
+			isa = PBXGroup;
+			children = (
+				919E98F1249659E000608EF0 /* BusLinesView.swift */,
+				919E98E224958B8900608EF0 /* BusLineListView.swift */,
+				919E98E0249035C000608EF0 /* BusLineCellView.swift */,
+			);
+			path = BusLines;
+			sourceTree = "<group>";
+		};
+		919E98EB249658BF00608EF0 /* BusStations */ = {
+			isa = PBXGroup;
+			children = (
+				919E98E42495966C00608EF0 /* BusStationListView.swift */,
+			);
+			path = BusStations;
+			sourceTree = "<group>";
+		};
+		919E98EC249658CD00608EF0 /* BusTimetables */ = {
+			isa = PBXGroup;
+			children = (
+				919E98F52496650100608EF0 /* BusTimetablesView.swift */,
+				919E98E62495979A00608EF0 /* BusTimetableListView.swift */,
+				919E98F3249664D700608EF0 /* BusTimetableCellView.swift */,
+			);
+			path = BusTimetables;
+			sourceTree = "<group>";
+		};
+		919E98ED2496591300608EF0 /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				911DB4A52486FDD90058C15F /* RATBVSwiftUI.xcdatamodeld */,
+			);
+			path = Persistance;
+			sourceTree = "<group>";
+		};
+		919E98EE2496594000608EF0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				911DB4AA2486FDE40058C15F /* Assets.xcassets */,
+				911DB4AD2486FDE40058C15F /* Preview Assets.xcassets */,
+				911DB4AF2486FDE40058C15F /* LaunchScreen.storyboard */,
+				911DB4B22486FDE40058C15F /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		919E98EF2496598E00608EF0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		919E98F02496599E00608EF0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,13 +305,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				911DB4A72486FDD90058C15F /* RATBVSwiftUI.xcdatamodeld in Sources */,
-				919E98E1249035C000608EF0 /* BusLineListItemView.swift in Sources */,
+				919E98E1249035C000608EF0 /* BusLineCellView.swift in Sources */,
 				919E98E52495966C00608EF0 /* BusStationListView.swift in Sources */,
+				919E98F4249664D700608EF0 /* BusTimetableCellView.swift in Sources */,
+				919E98F62496650100608EF0 /* BusTimetablesView.swift in Sources */,
 				911DB4A22486FDD80058C15F /* AppDelegate.swift in Sources */,
 				919E98E324958B8900608EF0 /* BusLineListView.swift in Sources */,
 				919E98E72495979A00608EF0 /* BusTimetableListView.swift in Sources */,
 				911DB4A92486FDD90058C15F /* ContentView.swift in Sources */,
 				911DB4A42486FDD80058C15F /* SceneDelegate.swift in Sources */,
+				919E98F2249659E000608EF0 /* BusLinesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,10 +467,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"RATBVSwiftUI/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"RATBVSwiftUI/Resources\"";
 				DEVELOPMENT_TEAM = JCP3P3L294;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = RATBVSwiftUI/Info.plist;
+				INFOPLIST_FILE = RATBVSwiftUI/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -411,10 +487,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"RATBVSwiftUI/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"RATBVSwiftUI/Resources\"";
 				DEVELOPMENT_TEAM = JCP3P3L294;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = RATBVSwiftUI/Info.plist;
+				INFOPLIST_FILE = RATBVSwiftUI/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

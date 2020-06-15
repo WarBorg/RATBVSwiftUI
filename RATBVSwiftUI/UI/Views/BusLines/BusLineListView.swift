@@ -12,16 +12,18 @@ struct BusLineListView: View {
     let startIndex: Int
     
     var body: some View {
-        List {
+        VStack {
             Text("Updated on 6/8/2020 21:38")
                 .padding(.trailing)
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .trailing)
             
-            ForEach(0..<15) { item in
-                NavigationLink(destination: BusStationListView()) {
-                    BusLineListItemView(itemNumber: item + self.startIndex)
-                        .navigationBarTitle("Linia \(item + self.startIndex)")
+            List {
+                ForEach(0..<15) { item in
+                    NavigationLink(destination:
+                        BusStationListView(navBarTitle: "Linia \(item + self.startIndex)")) {
+                        BusLineCellView(itemNumber: item + self.startIndex)
+                    }
                 }
             }
         }

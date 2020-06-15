@@ -1,5 +1,5 @@
 //
-//  BusTimetableListView.swift
+//  BusTimetablesView.swift
 //  RATBVSwiftUI
 //
 //  Created by Sergiu Cosmin on 14/06/2020.
@@ -8,11 +8,15 @@
 
 import SwiftUI
 
-enum TimetableTabs {
-    case weekdays, saturday, sunday
+enum TimetableTabs: String {
+    case weekdays = "Weekdays"
+    case saturday = "Saturday"
+    case sunday = "Sunday"
 }
 
-struct BusTimetableListView: View {
+struct BusTimetablesView: View {
+    let navBarTitle: String
+    
     var body: some View {
         TabView {
             Text("Weekdays")
@@ -34,11 +38,12 @@ struct BusTimetableListView: View {
             }
             .tag(TimetableTabs.sunday)
         }
+        .navigationBarTitle(Text(navBarTitle), displayMode: .inline)
     }
 }
 
-struct BusTimetableListView_Previews: PreviewProvider {
+struct BusTimetables_Previews: PreviewProvider {
     static var previews: some View {
-        BusTimetableListView()
+        BusTimetablesView(navBarTitle: "Test Station")
     }
 }

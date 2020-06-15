@@ -1,5 +1,5 @@
 //
-//  BusLineListItemView.swift
+//  BusLineCellView.swift
 //  RATBVSwiftUI
 //
 //  Created by Sergiu Cosmin on 10/06/2020.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct BusLineListItemView: View {
+struct BusLineCellView: View {
     let itemNumber: Int
     
     var body: some View {
@@ -33,6 +33,6 @@ struct BusLineListItemView: View {
 
 struct BusLineListItemView_Previews: PreviewProvider {
     static var previews: some View {
-        BusLineListItemView(itemNumber: 5)
+        BusLineCellView(itemNumber: 5)
     }
 }
