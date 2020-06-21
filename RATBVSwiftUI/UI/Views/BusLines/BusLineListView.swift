@@ -9,21 +9,19 @@
 import SwiftUI
 
 struct BusLineListView: View {
-    let startIndex: Int
+    let busLines: [BusLinesViewModel.BusLineViewModel]
+    let lastUpdateDate: String
     
     var body: some View {
         VStack {
-            Text("Updated on 6/8/2020 21:38")
+            Text("Updated on \(lastUpdateDate)")
                 .padding(.trailing)
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .trailing)
             
-            List {
-                ForEach(0..<15) { item in
-                    NavigationLink(destination:
-                        BusStationListView(navBarTitle: "Linia \(item + self.startIndex)")) {
-                        BusLineCellView(itemNumber: item + self.startIndex)
-                    }
+            List(busLines, id: \.id) { busLine in
+                NavigationLink(destination: BusStationListView(navBarTitle: busLine.name)) {
+                    BusLineCellView(lineName: busLine.name)
                 }
             }
         }
@@ -32,6 +30,11 @@ struct BusLineListView: View {
 
 struct BusLineListView_Previews: PreviewProvider {
     static var previews: some View {
-        BusLineListView(startIndex: 0)
+        BusLineListView(
+            busLines: [BusLinesViewModel.BusLineViewModel(
+                id: UUID(),
+                name: "Test",
+                route: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.")],
+            lastUpdateDate: "30.09.1985")
     }
 }

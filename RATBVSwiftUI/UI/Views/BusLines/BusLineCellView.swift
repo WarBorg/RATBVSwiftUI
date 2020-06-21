@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct BusLineCellView: View {
-    let itemNumber: Int
+    let lineName: String
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Line \(itemNumber)")
+            Text(lineName)
                 .font(.title)
                 .fontWeight(.medium)
                 .lineLimit(1)
@@ -33,6 +33,6 @@ struct BusLineCellView: View {
 
 struct BusLineListItemView_Previews: PreviewProvider {
     static var previews: some View {
-        BusLineCellView(itemNumber: 5)
+        BusLineCellView(lineName: "5")
     }
 }

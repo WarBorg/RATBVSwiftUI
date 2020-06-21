@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,9 @@
 		919E98F2249659E000608EF0 /* BusLinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98F1249659E000608EF0 /* BusLinesView.swift */; };
 		919E98F4249664D700608EF0 /* BusTimetableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98F3249664D700608EF0 /* BusTimetableCellView.swift */; };
 		919E98F62496650100608EF0 /* BusTimetablesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98F52496650100608EF0 /* BusTimetablesView.swift */; };
+		91A04AB7249AC35E0078942B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 91A04AB6249AC35E0078942B /* Alamofire */; };
+		91A04AB9249ACC550078942B /* BusLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A04AB8249ACC550078942B /* BusLine.swift */; };
+		91A04ABB249AD1650078942B /* BusLinesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A04ABA249AD1650078942B /* BusLinesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,8 @@
 		919E98F1249659E000608EF0 /* BusLinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLinesView.swift; sourceTree = "<group>"; };
 		919E98F3249664D700608EF0 /* BusTimetableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTimetableCellView.swift; sourceTree = "<group>"; };
 		919E98F52496650100608EF0 /* BusTimetablesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTimetablesView.swift; sourceTree = "<group>"; };
+		91A04AB8249ACC550078942B /* BusLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLine.swift; sourceTree = "<group>"; };
+		91A04ABA249AD1650078942B /* BusLinesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLinesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91A04AB7249AC35E0078942B /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +144,7 @@
 		919E98E9249658A100608EF0 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				91A04ABA249AD1650078942B /* BusLinesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -192,6 +199,7 @@
 		919E98EF2496598E00608EF0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				91A04AB8249ACC550078942B /* BusLine.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -219,6 +227,9 @@
 			dependencies = (
 			);
 			name = RATBVSwiftUI;
+			packageProductDependencies = (
+				91A04AB6249AC35E0078942B /* Alamofire */,
+			);
 			productName = RATBVSwiftUI;
 			productReference = 911DB49E2486FDD80058C15F /* RATBVSwiftUI.app */;
 			productType = "com.apple.product-type.application";
@@ -269,6 +280,9 @@
 				Base,
 			);
 			mainGroup = 911DB4952486FDD80058C15F;
+			packageReferences = (
+				91A04AB5249AC35E0078942B /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 911DB49F2486FDD80058C15F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -310,10 +324,12 @@
 				919E98F4249664D700608EF0 /* BusTimetableCellView.swift in Sources */,
 				919E98F62496650100608EF0 /* BusTimetablesView.swift in Sources */,
 				911DB4A22486FDD80058C15F /* AppDelegate.swift in Sources */,
+				91A04ABB249AD1650078942B /* BusLinesViewModel.swift in Sources */,
 				919E98E324958B8900608EF0 /* BusLineListView.swift in Sources */,
 				919E98E72495979A00608EF0 /* BusTimetableListView.swift in Sources */,
 				911DB4A92486FDD90058C15F /* ContentView.swift in Sources */,
 				911DB4A42486FDD80058C15F /* SceneDelegate.swift in Sources */,
+				91A04AB9249ACC550078942B /* BusLine.swift in Sources */,
 				919E98F2249659E000608EF0 /* BusLinesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -577,6 +593,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		91A04AB5249AC35E0078942B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		91A04AB6249AC35E0078942B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91A04AB5249AC35E0078942B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		911DB4A52486FDD90058C15F /* RATBVSwiftUI.xcdatamodeld */ = {

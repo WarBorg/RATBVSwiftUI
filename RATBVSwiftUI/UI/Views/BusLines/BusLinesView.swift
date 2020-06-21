@@ -8,27 +8,26 @@
 
 import SwiftUI
 
-enum TransportTypeTabs: String {
-    case bus = "Bus"
-    case midibus = "Midibus"
-    case trolleybus = "Trolleybus"
-}
-
 struct BusLinesView: View {
+    @ObservedObject private var busLineViewModel = BusLinesViewModel()
     @State private var currentTab = TransportTypeTabs.bus
     private let navBarText = "Bus Lines"
     
     var body: some View {
         NavigationView {
             TabView(selection: $currentTab) {
-                BusLineListView(startIndex: 0)
+                BusLineListView(
+                    busLines: busLineViewModel.busLines,
+                    lastUpdateDate: busLineViewModel.lastUpdateDate)
                     .tabItem {
                         Image("tab-bus")
                         Text(TransportTypeTabs.bus.rawValue)
                     }
                     .tag(TransportTypeTabs.bus)
                 
-                BusLineListView(startIndex: 10)
+                BusLineListView(
+                busLines: busLineViewModel.midibusLines,
+                lastUpdateDate: busLineViewModel.lastUpdateDate)
                     .tabItem {
                         Image("tab-midibus")
                             .font(.title)
@@ -36,7 +35,9 @@ struct BusLinesView: View {
                     }
                     .tag(TransportTypeTabs.midibus)
                 
-                BusLineListView(startIndex: 20)
+                BusLineListView(
+                busLines: busLineViewModel.trolleyBusLines,
+                lastUpdateDate: busLineViewModel.lastUpdateDate)
                     .tabItem {
                         Image("tab-trolleybus")
                             .font(.title)
