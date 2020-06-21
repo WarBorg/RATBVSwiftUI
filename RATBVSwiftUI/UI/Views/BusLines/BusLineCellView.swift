@@ -32,6 +32,7 @@ struct BusLineListItemView_Previews: PreviewProvider {
     static var previews: some View {
         BusLineCellView(busLineViewModel: BusLinesViewModel.BusLineViewModel(
             busLine: BusLine(
+                id: 0,
                 name: "Test",
                 route: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 type: "Bus",

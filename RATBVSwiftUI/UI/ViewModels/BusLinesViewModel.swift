@@ -61,7 +61,7 @@ class BusLinesViewModel : ObservableObject {
     
     // Viewmodel class for bus line cells
     class BusLineViewModel : ObservableObject {
-        @Published var id: UUID
+        @Published var id: Int
         @Published var name: String
         @Published var route: String
         

@@ -30,6 +30,7 @@
 		91DEBF09249EFCEB00F379DA /* AlamofireLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEBF08249EFCEB00F379DA /* AlamofireLogger.swift */; };
 		91DEBF0B249EFDD900F379DA /* BusTimetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEBF0A249EFDD900F379DA /* BusTimetable.swift */; };
 		91DEBF0D249EFE6500F379DA /* BusTimetablesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEBF0C249EFE6500F379DA /* BusTimetablesViewModel.swift */; };
+		91DEBF0F249FBAF700F379DA /* BusDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEBF0E249FBAF700F379DA /* BusDataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		91DEBF08249EFCEB00F379DA /* AlamofireLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireLogger.swift; sourceTree = "<group>"; };
 		91DEBF0A249EFDD900F379DA /* BusTimetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTimetable.swift; sourceTree = "<group>"; };
 		91DEBF0C249EFE6500F379DA /* BusTimetablesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTimetablesViewModel.swift; sourceTree = "<group>"; };
+		91DEBF0E249FBAF700F379DA /* BusDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusDataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				911DB4A52486FDD90058C15F /* RATBVSwiftUI.xcdatamodeld */,
+				91DEBF0E249FBAF700F379DA /* BusDataService.swift */,
 			);
 			path = Persistance;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				919E98E72495979A00608EF0 /* BusTimetableListView.swift in Sources */,
 				911DB4A92486FDD90058C15F /* ContentView.swift in Sources */,
 				911DB4A42486FDD80058C15F /* SceneDelegate.swift in Sources */,
+				91DEBF0F249FBAF700F379DA /* BusDataService.swift in Sources */,
 				91A04AB9249ACC550078942B /* BusLine.swift in Sources */,
 				919E98F2249659E000608EF0 /* BusLinesView.swift in Sources */,
 			);

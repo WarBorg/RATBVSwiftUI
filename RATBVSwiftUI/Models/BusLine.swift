@@ -9,7 +9,7 @@
 import Foundation
 
 struct BusLine : Identifiable, Decodable {
-    let id = UUID()
+    let id: Int
     let name: String
     let route: String
     let type: String
