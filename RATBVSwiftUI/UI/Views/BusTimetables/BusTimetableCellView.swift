@@ -9,20 +9,28 @@
 import SwiftUI
 
 struct BusTimetableCellView: View {
+    @ObservedObject var busTimetableViewModel : BusTimetablesViewModel.BusTimetableViewModel
+    
     var body: some View {
         GeometryReader { geometry in
             HStack() {
-                Text("15")
+                Text(self.busTimetableViewModel.hour)
                     .frame(width: geometry.size.width * 0.20, height: geometry.size.height)
-                Text("02 11 20 29 38 48")
+                Text(self.busTimetableViewModel.minutes)
                     .frame(width: geometry.size.width * 0.80, height: geometry.size.height, alignment: .leading)
             }
         }
     }
 }
 
+#if DEBUG
 struct BusTimetableCellView_Previews: PreviewProvider {
     static var previews: some View {
-        BusTimetableCellView()
+        BusTimetableCellView(busTimetableViewModel: BusTimetablesViewModel.BusTimetableViewModel(
+            busTimetable: BusTimetable(
+                hour: "15",
+                minutes: "02 11 20 29 38 48",
+                timeOfWeek: "Saturday")))
     }
 }
+#endif

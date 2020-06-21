@@ -21,20 +21,25 @@ struct BusLineListView: View {
             
             List(busLines, id: \.id) { busLine in
                 NavigationLink(destination: BusStationListView(navBarTitle: busLine.name)) {
-                    BusLineCellView(lineName: busLine.name)
+                    BusLineCellView(busLineViewModel: busLine)
                 }
             }
         }
     }
 }
 
+#if DEBUG
 struct BusLineListView_Previews: PreviewProvider {
     static var previews: some View {
         BusLineListView(
             busLines: [BusLinesViewModel.BusLineViewModel(
-                id: UUID(),
-                name: "Test",
-                route: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.")],
+                busLine: BusLine(
+                    name: "Test",
+                    route: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    type: "Bus",
+                    linkNormalWay: "",
+                    linkReverseWay: ""))],
             lastUpdateDate: "30.09.1985")
     }
 }
+#endif

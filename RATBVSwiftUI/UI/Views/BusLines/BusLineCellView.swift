@@ -9,16 +9,16 @@
 import SwiftUI
 
 struct BusLineCellView: View {
-    let lineName: String
+    @ObservedObject var busLineViewModel : BusLinesViewModel.BusLineViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(lineName)
+            Text(busLineViewModel.name)
                 .font(.title)
                 .fontWeight(.medium)
                 .lineLimit(1)
                 .multilineTextAlignment(.leading)
-            Text("On the other hand, we denounce with righteous indignation and dislike men who cdscs cdscs  cdscsd cdscsdc")
+            Text(busLineViewModel.route)
                 .font(.body)
                 .fontWeight(.light)
                 .lineLimit(2)
@@ -27,12 +27,16 @@ struct BusLineCellView: View {
     }
 }
 
-
-
-
-
+#if DEBUG
 struct BusLineListItemView_Previews: PreviewProvider {
     static var previews: some View {
-        BusLineCellView(lineName: "5")
+        BusLineCellView(busLineViewModel: BusLinesViewModel.BusLineViewModel(
+            busLine: BusLine(
+                name: "Test",
+                route: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                type: "Bus",
+                linkNormalWay: "",
+                linkReverseWay: "")))
     }
 }
+#endif

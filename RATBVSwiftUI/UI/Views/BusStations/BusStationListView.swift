@@ -9,26 +9,24 @@
 import SwiftUI
 
 struct BusStationListView: View {
+    @ObservedObject private var busStationsViewModel = BusStationsViewModel()
     let navBarTitle: String
     
     var body: some View {
         VStack {
-            Text("Updated on 6/8/2020 21:38")
+            Text("Updated on \(busStationsViewModel.lastUpdateDate)")
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.trailing)
                 .padding(.top)
             
-            List {
-                ForEach(0..<15) { item in
-                    NavigationLink(destination:
-                    BusTimetablesView(navBarTitle: "Station \(item)")) {
-                        Text("Station \(item)")
-                            .font(.system(size: 26))
-                            .fontWeight(.medium)
-                            .lineLimit(1)
-                            .multilineTextAlignment(.leading)
-                    }
+            List(busStationsViewModel.busStions, id: \.id) { busStation in
+                NavigationLink(destination: BusTimetablesView(navBarTitle: busStation.name)) {
+                    Text(busStation.name)
+                        .font(.system(size: 24))
+                        .fontWeight(.medium)
+                        .lineLimit(1)
+                        .multilineTextAlignment(.leading)
                 }
             }
             .navigationBarTitle(Text(navBarTitle), displayMode: .inline)

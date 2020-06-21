@@ -15,23 +15,30 @@ enum TimetableTabs: String {
 }
 
 struct BusTimetablesView: View {
+    @ObservedObject private var busTimetablesViewModel = BusTimetablesViewModel()
     let navBarTitle: String
     
     var body: some View {
         TabView {
-            BusTimetableListView()
+            BusTimetableListView(
+                busTimetables: busTimetablesViewModel.weekdaysTimetable,
+                lastUpdateDate: busTimetablesViewModel.lastUpdateDate)
                 .tabItem {
                     Text(TimetableTabs.weekdays.rawValue)
             }
             .tag(TimetableTabs.weekdays)
             
-            BusTimetableListView()
+            BusTimetableListView(
+                busTimetables: busTimetablesViewModel.saturdayTimetable,
+                lastUpdateDate: busTimetablesViewModel.lastUpdateDate)
                 .tabItem {
                     Text(TimetableTabs.saturday.rawValue)
             }
             .tag(TimetableTabs.saturday)
             
-            BusTimetableListView()
+            BusTimetableListView(
+                busTimetables: busTimetablesViewModel.sundayTimetable,
+                lastUpdateDate: busTimetablesViewModel.lastUpdateDate)
                 .tabItem {
                     Text(TimetableTabs.sunday.rawValue)
             }
@@ -41,8 +48,10 @@ struct BusTimetablesView: View {
     }
 }
 
+#if DEBUG
 struct BusTimetablesView_Previews: PreviewProvider {
     static var previews: some View {
         BusTimetablesView(navBarTitle: "Test Station")
     }
 }
+#endif

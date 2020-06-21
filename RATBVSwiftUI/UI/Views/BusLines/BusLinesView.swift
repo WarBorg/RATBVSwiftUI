@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct BusLinesView: View {
-    @ObservedObject private var busLineViewModel = BusLinesViewModel()
+    @ObservedObject private var busLinesViewModel = BusLinesViewModel()
     @State private var currentTab = TransportTypeTabs.bus
     private let navBarText = "Bus Lines"
     
@@ -17,8 +17,8 @@ struct BusLinesView: View {
         NavigationView {
             TabView(selection: $currentTab) {
                 BusLineListView(
-                    busLines: busLineViewModel.busLines,
-                    lastUpdateDate: busLineViewModel.lastUpdateDate)
+                    busLines: busLinesViewModel.busLines,
+                    lastUpdateDate: busLinesViewModel.lastUpdateDate)
                     .tabItem {
                         Image("tab-bus")
                         Text(TransportTypeTabs.bus.rawValue)
@@ -26,8 +26,8 @@ struct BusLinesView: View {
                     .tag(TransportTypeTabs.bus)
                 
                 BusLineListView(
-                busLines: busLineViewModel.midibusLines,
-                lastUpdateDate: busLineViewModel.lastUpdateDate)
+                busLines: busLinesViewModel.midibusLines,
+                lastUpdateDate: busLinesViewModel.lastUpdateDate)
                     .tabItem {
                         Image("tab-midibus")
                             .font(.title)
@@ -36,8 +36,8 @@ struct BusLinesView: View {
                     .tag(TransportTypeTabs.midibus)
                 
                 BusLineListView(
-                busLines: busLineViewModel.trolleyBusLines,
-                lastUpdateDate: busLineViewModel.lastUpdateDate)
+                busLines: busLinesViewModel.trolleyBusLines,
+                lastUpdateDate: busLinesViewModel.lastUpdateDate)
                     .tabItem {
                         Image("tab-trolleybus")
                             .font(.title)
@@ -50,8 +50,10 @@ struct BusLinesView: View {
     }
 }
 
+#if DEBUG
 struct BusLinesView_Previews: PreviewProvider {
     static var previews: some View {
         BusLinesView()
     }
 }
+#endif

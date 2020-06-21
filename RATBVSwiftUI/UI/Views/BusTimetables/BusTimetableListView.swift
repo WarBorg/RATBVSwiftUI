@@ -9,13 +9,16 @@
 import SwiftUI
 
 struct BusTimetableListView: View {
+    let busTimetables: [BusTimetablesViewModel.BusTimetableViewModel]
+    let lastUpdateDate: String
+    
     var body: some View {
         VStack {
-            Text("Updated on 6/8/2020 21:38")
-                .font(.headline)
-                .frame(maxWidth: .infinity, alignment: .trailing)
+            Text("Updated on \(lastUpdateDate)")
                 .padding(.trailing)
                 .padding(.top)
+                .font(.headline)
+                .frame(maxWidth: .infinity, alignment: .trailing)
             
             GeometryReader { geometry in
                 HStack() {
@@ -29,18 +32,25 @@ struct BusTimetableListView: View {
             }
             .padding()
             
-            List {
-                ForEach(0..<15) { item in
-                    BusTimetableCellView()
-                }
+            List(busTimetables, id: \.id) { busTimetable in
+                BusTimetableCellView(busTimetableViewModel: busTimetable)
             }
             .layoutPriority(100)
         }
     }
 }
 
+#if DEBUG
 struct BusTimetableListView_Previews: PreviewProvider {
     static var previews: some View {
-        BusTimetableListView()
+        BusTimetableListView(
+            busTimetables: [BusTimetablesViewModel.BusTimetableViewModel(
+                busTimetable: BusTimetable(
+                    hour: "15",
+                    minutes: "02 11 20 29 38 48",
+                    timeOfWeek: "Saturday"))],
+            lastUpdateDate: "30.09.1985"
+        )
     }
 }
+#endif

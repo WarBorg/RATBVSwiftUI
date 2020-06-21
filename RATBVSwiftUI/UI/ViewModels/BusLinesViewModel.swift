@@ -30,7 +30,7 @@ class BusLinesViewModel : ObservableObject {
     
     func getBusLinesFromWebAPI() {
         AF
-        .request("http://ratbvwebapi.azurewebsites.net/api/buslines/")
+        .request("https://ratbvwebapi.azurewebsites.net/api/buslines/")
         .validate()
             .responseDecodable(of: [BusLine].self) { response in
                 switch(response.result) {
@@ -47,33 +47,28 @@ class BusLinesViewModel : ObservableObject {
     
     func getBusLinesByType(_ busLines: [BusLine]) {
         self.busLines = busLines
-            .filter({ $0.type == TransportTypeTabs.bus.rawValue })
-            .map({
-                BusLineViewModel(id: $0.id, name: $0.name, route: $0.route)
-            })
+            .filter { $0.type == TransportTypeTabs.bus.rawValue }
+            .map { BusLineViewModel(busLine: $0) }
         
         self.midibusLines = busLines
-        .filter({ $0.type == TransportTypeTabs.midibus.rawValue })
-        .map({
-            BusLineViewModel(id: $0.id, name: $0.name, route: $0.route)
-        })
+            .filter { $0.type == TransportTypeTabs.midibus.rawValue }
+            .map { BusLineViewModel(busLine: $0) }
         
         self.trolleyBusLines = busLines
-        .filter({ $0.type == TransportTypeTabs.trolleybus.rawValue })
-        .map({
-            BusLineViewModel(id: $0.id, name: $0.name, route: $0.route)
-        })
+            .filter { $0.type == TransportTypeTabs.trolleybus.rawValue }
+            .map { BusLineViewModel(busLine: $0) }
     }
     
+    // Viewmodel class for bus line cells
     class BusLineViewModel : ObservableObject {
         @Published var id: UUID
         @Published var name: String
         @Published var route: String
         
-        init(id: UUID, name: String, route: String) {
-            self.id = id
-            self.name = name
-            self.route = route
+        init(busLine: BusLine) {
+            self.id = busLine.id
+            self.name = busLine.name
+            self.route = busLine.route
         }
     }
 }
