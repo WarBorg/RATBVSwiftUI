@@ -7,54 +7,77 @@
 //
 
 import Foundation
-import Alamofire
+import Resolver
 
 class BusStationsViewModel : ObservableObject {
-    @Published var busStions: [BusStationViewModel] = []
+    @Injected private var busWebService: BusWebService
+    
+    @Published var busStations: [BusStationViewModel] = []
     @Published var lastUpdateDate: String = "Never"
     
-    //let busLineId: UUID
-    //let linkNormalWay: String
-    //let linkReverseWay: String
+    let busLineId: Int
+    let linkNormalWay: String
+    let linkReverseWay: String
+    
+    private var isRefresh = false
 
-    init() {
-        getBusStationsFromWebAPI()
+    init(busLineId: Int, linkNormalWay: String, linkReverseWay: String) {
+        self.busLineId = busLineId
+        self.linkNormalWay = linkNormalWay
+        self.linkReverseWay = linkReverseWay
+        
+        getBusStations()
     }
     
-    func getBusStationsFromWebAPI() {
-        
-        AF
-            .request("https://ratbvwebapi.azurewebsites.net/api/busstations/afisaje___5-dus.html")
-            .validate()
-            .responseDecodable(of: [BusStation].self) { response in
-                switch(response.result) {
-                    case .success(_):
-                        // Unwrap optional [BusStation]? before sending it to the method
-                        self.getBusStations(response.value.map({ $0 }) ?? [])
-                        // Set the last updated date
-                        self.lastUpdateDate = response.value?[0].lastUpdateDate ?? "Never"
-                    case .failure(_):
-                        break
-                    }
+    func getBusStations() {
+        // If there is a forced user refresh we want to keep the same Direction
+        if (!isRefresh)
+        {
+            // Initial view of the stations list should be normal way
+//            if (!shouldReverseWay)
+//            {
+//                Direction = RouteDirections.Normal;
+//
+//                _directionLink = _busLine.LinkNormalWay;
+//            }
+//            else if (shouldReverseWay && Direction == RouteDirections.Normal)
+//            {
+//                Direction = RouteDirections.Reverse;
+//
+//                _directionLink = _busLine.LinkReverseWay;
+//            }
+//            else if (shouldReverseWay && Direction == RouteDirections.Reverse)
+//            {
+//                Direction = RouteDirections.Normal;
+//
+//                _directionLink = _busLine.LinkNormalWay;
+//            }
         }
-    }
-    
-    func getBusStations(_ busStations: [BusStation]) {
-        //var direction = "Normal"
         
-        self.busStions = busStations
-            //.filter({ $0.  == TransportTypeTabs.bus.rawValue })
-            .map { BusStationViewModel(busStation: $0) }
+        busWebService.getBusStations(directionLink: self.linkNormalWay) { busStations in
+            
+            if (busStations.isEmpty) {
+                self.lastUpdateDate = "Never"
+                return
+            }
+                // Set the last updated date
+                self.lastUpdateDate = busStations[0].lastUpdateDate ?? "Never"
+                
+                self.busStations = busStations
+                    .map { BusStationViewModel(busStation: $0) }
+        }
     }
     
     // Viewmodel class for bus station cells
     class BusStationViewModel : ObservableObject {
         @Published var id: UUID
         @Published var name: String
+        let scheduleLink: String
         
         init(busStation: BusStation) {
-            self.id = busStation.id
+            self.id = busStation.id ?? UUID()
             self.name = busStation.name
+            self.scheduleLink = busStation.scheduleLink
         }
     }
 }

@@ -20,11 +20,21 @@ struct BusLineListView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
             
             List(busLines, id: \.id) { busLine in
-                NavigationLink(destination: BusStationListView(navBarTitle: busLine.name)) {
-                    BusLineCellView(busLineViewModel: busLine)
+                NavigationLink(destination: self.busStationsView(busLine: busLine)) {
+                        BusLineCellView(busLineViewModel: busLine)
                 }
             }
         }
+    }
+}
+
+private extension BusLineListView {
+    func busStationsView(busLine : BusLinesViewModel.BusLineViewModel) -> some View {
+        BusStationListView(
+            busStationsViewModel: .init(busLineId: busLine.id,
+                                        linkNormalWay: busLine.linkNormalWay,
+                                        linkReverseWay: busLine.linkReverseWay),
+            navBarTitle: busLine.name)
     }
 }
 

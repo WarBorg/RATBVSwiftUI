@@ -15,5 +15,30 @@ struct BusLine : Identifiable, Decodable {
     let type: String
     let linkNormalWay: String
     let linkReverseWay: String
-    let lastUpdateDate = "30/09/1985 21:00"
+    let lastUpdateDate: String? // = "30/09/1985 21:00"
+    
+    init(id: Int,
+         name: String,
+         route: String,
+         type: String,
+         linkNormalWay: String,
+         linkReverseWay: String) {
+        self.id = id
+        self.name = name
+        self.route = route
+        self.type = type
+        self.linkNormalWay = linkNormalWay
+        self.linkReverseWay = linkReverseWay
+        self.lastUpdateDate = "30/09/1985 21:00"
+    }
+
+    init(mo: BusLineMO) {
+        self.id = Int(mo.id)
+        self.name = mo.name ?? ""
+        self.route = mo.route ?? ""
+        self.type = mo.type ?? ""
+        self.linkNormalWay = mo.linkNormalWay ?? ""
+        self.linkReverseWay = mo.linkReverseWay ?? ""
+        self.lastUpdateDate = mo.lastUpdateDate ?? ""
+    }
 }

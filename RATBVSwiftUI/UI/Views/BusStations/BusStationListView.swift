@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct BusStationListView: View {
-    @ObservedObject private var busStationsViewModel = BusStationsViewModel()
+    @ObservedObject private(set) var busStationsViewModel: BusStationsViewModel
     let navBarTitle: String
     
     var body: some View {
@@ -20,8 +20,8 @@ struct BusStationListView: View {
                 .padding(.trailing)
                 .padding(.top)
             
-            List(busStationsViewModel.busStions, id: \.id) { busStation in
-                NavigationLink(destination: BusTimetablesView(navBarTitle: busStation.name)) {
+            List(busStationsViewModel.busStations, id: \.id) { busStation in
+                NavigationLink(destination: self.busTimetablesView(busStation: busStation)) {
                     Text(busStation.name)
                         .font(.system(size: 24))
                         .fontWeight(.medium)
@@ -52,10 +52,19 @@ struct BusStationListView: View {
     }
 }
 
+private extension BusStationListView {
+    func busTimetablesView(busStation : BusStationsViewModel.BusStationViewModel) -> some View {
+        BusTimetablesView(
+            busTimetablesViewModel: .init(busStationId: busStation.id,
+                                          scheduleLink: busStation.scheduleLink),
+            navBarTitle: busStation.name)
+    }
+}
+
 #if DEBUG
-struct BusStationListView_Previews: PreviewProvider {
+/*struct BusStationListView_Previews: PreviewProvider {
     static var previews: some View {
         BusStationListView(navBarTitle: "Test")
     }
-}
+}*/
 #endif

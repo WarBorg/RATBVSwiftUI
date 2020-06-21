@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="BusLine" representedClassName="BusLineEntity" syncable="YES" codeGenerationType="class">
+    <entity name="BusLine" representedClassName="BusLineMO" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="lastUpdateDate" optional="YES" attributeType="String"/>
         <attribute name="linkNormalWay" optional="YES" attributeType="String"/>
@@ -15,21 +15,21 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="BusStation" representedClassName="BusStationEntity" syncable="YES" codeGenerationType="class">
+    <entity name="BusStation" representedClassName="BusStationMO" syncable="YES" codeGenerationType="class">
         <attribute name="direction" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="lastUpdateDate" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="scheduleLink" optional="YES" attributeType="String"/>
         <relationship name="busLine" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="BusLine" inverseName="stations" inverseEntity="BusLine"/>
-        <relationship name="timetables" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="BusTimetables" inverseName="station" inverseEntity="BusTimetables"/>
+        <relationship name="timetables" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="BusTimetable" inverseName="station" inverseEntity="BusTimetable"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="BusTimetables" representedClassName="BusTimetablesEntity" syncable="YES" codeGenerationType="class">
+    <entity name="BusTimetable" representedClassName="BusTimetableMO" syncable="YES" codeGenerationType="class">
         <attribute name="hour" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="lastUpdateDate" optional="YES" attributeType="String"/>
@@ -45,6 +45,6 @@
     <elements>
         <element name="BusLine" positionX="-322.30078125" positionY="48.27734375" width="128" height="163"/>
         <element name="BusStation" positionX="-141.1875" positionY="78.4453125" width="128" height="148"/>
-        <element name="BusTimetables" positionX="35.67578125" positionY="81.65234375" width="128" height="133"/>
+        <element name="BusTimetable" positionX="35.67578125" positionY="81.65234375" width="128" height="133"/>
     </elements>
 </model>

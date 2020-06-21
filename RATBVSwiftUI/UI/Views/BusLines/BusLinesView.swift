@@ -7,9 +7,10 @@
 //
 
 import SwiftUI
+import Resolver
 
-struct BusLinesView: View {
-    @ObservedObject private var busLinesViewModel = BusLinesViewModel()
+struct BusLinesView: View, Resolving {
+    @InjectedObject private var busLinesViewModel: BusLinesViewModel
     @State private var currentTab = TransportTypeTabs.bus
     private let navBarText = "Bus Lines"
     

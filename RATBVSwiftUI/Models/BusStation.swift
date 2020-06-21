@@ -9,10 +9,27 @@
 import Foundation
 
 struct BusStation : Identifiable, Decodable {
-    let id = UUID()
-    //let busLineId: UUID
+    let id: UUID?
     let name: String
     let direction: String?
     let scheduleLink: String
-    let lastUpdateDate = "30/09/1985 21:00"
+    let lastUpdateDate: String?
+    
+    init(name: String,
+         direction: String,
+         scheduleLink: String) {
+        self.id = UUID()
+        self.name = name
+        self.direction = direction
+        self.scheduleLink = scheduleLink
+        self.lastUpdateDate = "30/09/1985 21:00"
+    }
+    
+    init(mo: BusStationMO) {
+        self.id = mo.id ?? UUID()
+        self.name = mo.name ?? ""
+        self.direction = mo.direction ?? ""
+        self.scheduleLink = mo.scheduleLink ?? ""
+        self.lastUpdateDate = mo.lastUpdateDate ?? ""
+    }
 }

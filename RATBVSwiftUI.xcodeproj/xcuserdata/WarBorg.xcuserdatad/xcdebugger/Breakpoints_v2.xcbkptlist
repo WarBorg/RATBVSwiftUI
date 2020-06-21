@@ -23,22 +23,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A17B6F24-538F-48E2-AB4B-C8CAC7ECEF95"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RATBVSwiftUI/UI/ViewModels/BusStationsViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "getBusStationsFromWebAPI()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "9D98EE4A-7F33-480E-B850-FCBA3FC5BE85"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -46,9 +30,9 @@
             filePath = "RATBVSwiftUI/UI/ViewModels/BusStationsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "init()"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "init(busLineId:linkNormalWay:linkReverseWay:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -66,6 +50,118 @@
             endingLineNumber = "12"
             landmarkName = "BusStationListView"
             landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C17333E5-A1B7-423A-AF1F-B7C79BC2671B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RATBVSwiftUI/UI/ViewModels/BusTimetablesViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "getTimetableByTypeOfWeek()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DD39A25A-7A9A-44DE-9FD8-11FE33146B1E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RATBVSwiftUI/Services/BusWebService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "09059F05-9081-4AD9-A5FA-1761F895136D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RATBVSwiftUI/Services/BusWebService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "97B23868-70DB-42C4-95EB-D5FBEB5A2714"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RATBVSwiftUI/UI/ViewModels/BusTimetablesViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "init(busStationId:scheduleLink:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "97B23868-70DB-42C4-95EB-D5FBEB5A2714 - 4f7a9eb3fdf01126"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RATBVSwiftUI.BusTimetablesViewModel.__allocating_init(busStationId: Foundation.UUID, scheduleLink: Swift.String) -&gt; RATBVSwiftUI.BusTimetablesViewModel"
+                  moduleName = "RATBVSwiftUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/WarBorg/Work/Personal/GitHub/RATBVSwiftUI/RATBVSwiftUI/UI/ViewModels/BusTimetablesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "10">
+               </Location>
+               <Location
+                  uuid = "97B23868-70DB-42C4-95EB-D5FBEB5A2714 - c451149ce3ec61e2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RATBVSwiftUI.BusTimetablesViewModel.init(busStationId: Foundation.UUID, scheduleLink: Swift.String) -&gt; RATBVSwiftUI.BusTimetablesViewModel"
+                  moduleName = "RATBVSwiftUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/WarBorg/Work/Personal/GitHub/RATBVSwiftUI/RATBVSwiftUI/UI/ViewModels/BusTimetablesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "306">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "17004023-8249-48A6-89DE-131565CE2F47"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RATBVSwiftUI/Services/BusWebService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
