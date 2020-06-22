@@ -40,6 +40,9 @@
 		91DEBF20249FF3E900F379DA /* BusTimetableMO+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEBF1F249FF3E900F379DA /* BusTimetableMO+Model.swift */; };
 		91DEBF2624A00D0300F379DA /* BusWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEBF2524A00D0300F379DA /* BusWebService.swift */; };
 		91DEBF2824A00F9B00F379DA /* BusRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEBF2724A00F9B00F379DA /* BusRepository.swift */; };
+		91DEBF2D24A033F100F379DA /* SwiftUIPullToRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 91DEBF2C24A033F100F379DA /* SwiftUIPullToRefresh */; };
+		91DEBF3024A09D5500F379DA /* NavigationLazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEBF2F24A09D5500F379DA /* NavigationLazyView.swift */; };
+		91DEBF3224A0AB7200F379DA /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEBF3124A0AB7200F379DA /* Date+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +91,8 @@
 		91DEBF1F249FF3E900F379DA /* BusTimetableMO+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BusTimetableMO+Model.swift"; sourceTree = "<group>"; };
 		91DEBF2524A00D0300F379DA /* BusWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusWebService.swift; sourceTree = "<group>"; };
 		91DEBF2724A00F9B00F379DA /* BusRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusRepository.swift; sourceTree = "<group>"; };
+		91DEBF2F24A09D5500F379DA /* NavigationLazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLazyView.swift; sourceTree = "<group>"; };
+		91DEBF3124A0AB7200F379DA /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +102,7 @@
 			files = (
 				91DEBF12249FC4C400F379DA /* Resolver in Frameworks */,
 				91A04AB7249AC35E0078942B /* Alamofire in Frameworks */,
+				91DEBF2D24A033F100F379DA /* SwiftUIPullToRefresh in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +163,7 @@
 		919E98DF248ECFF300608EF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				91DEBF2E24A09CED00F379DA /* Helpers */,
 				919E98EA249658B100608EF0 /* BusLines */,
 				919E98EB249658BF00608EF0 /* BusStations */,
 				919E98EC249658CD00608EF0 /* BusTimetables */,
@@ -259,8 +266,17 @@
 			isa = PBXGroup;
 			children = (
 				91DEBF08249EFCEB00F379DA /* AlamofireLogger.swift */,
+				91DEBF3124A0AB7200F379DA /* Date+Extensions.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		91DEBF2E24A09CED00F379DA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				91DEBF2F24A09D5500F379DA /* NavigationLazyView.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +298,7 @@
 			packageProductDependencies = (
 				91A04AB6249AC35E0078942B /* Alamofire */,
 				91DEBF11249FC4C400F379DA /* Resolver */,
+				91DEBF2C24A033F100F379DA /* SwiftUIPullToRefresh */,
 			);
 			productName = RATBVSwiftUI;
 			productReference = 911DB49E2486FDD80058C15F /* RATBVSwiftUI.app */;
@@ -336,6 +353,7 @@
 			packageReferences = (
 				91A04AB5249AC35E0078942B /* XCRemoteSwiftPackageReference "Alamofire" */,
 				91DEBF10249FC4C400F379DA /* XCRemoteSwiftPackageReference "Resolver" */,
+				91DEBF2B24A033F100F379DA /* XCRemoteSwiftPackageReference "SwiftUI-PullToRefresh" */,
 			);
 			productRefGroup = 911DB49F2486FDD80058C15F /* Products */;
 			projectDirPath = "";
@@ -382,6 +400,7 @@
 				91DEBF1E249FF3D800F379DA /* BusStationMO+Model.swift in Sources */,
 				91DEBF0B249EFDD900F379DA /* BusTimetable.swift in Sources */,
 				919E98E52495966C00608EF0 /* BusStationListView.swift in Sources */,
+				91DEBF3024A09D5500F379DA /* NavigationLazyView.swift in Sources */,
 				919E98F4249664D700608EF0 /* BusTimetableCellView.swift in Sources */,
 				919E98F62496650100608EF0 /* BusTimetablesView.swift in Sources */,
 				911DB4A22486FDD80058C15F /* AppDelegate.swift in Sources */,
@@ -395,6 +414,7 @@
 				91DEBF18249FC7B800F379DA /* Services+Injection.swift in Sources */,
 				91DEBF20249FF3E900F379DA /* BusTimetableMO+Model.swift in Sources */,
 				91DEBF1A249FF35F00F379DA /* BusDataService.swift in Sources */,
+				91DEBF3224A0AB7200F379DA /* Date+Extensions.swift in Sources */,
 				91DEBF16249FC76D00F379DA /* ViewModels+Injection.swift in Sources */,
 				91A04AB9249ACC550078942B /* BusLine.swift in Sources */,
 				919E98F2249659E000608EF0 /* BusLinesView.swift in Sources */,
@@ -679,6 +699,14 @@
 				minimumVersion = 1.1.4;
 			};
 		};
+		91DEBF2B24A033F100F379DA /* XCRemoteSwiftPackageReference "SwiftUI-PullToRefresh" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/phuhuynh2411/SwiftUI-PullToRefresh.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.6;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -691,6 +719,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 91DEBF10249FC4C400F379DA /* XCRemoteSwiftPackageReference "Resolver" */;
 			productName = Resolver;
+		};
+		91DEBF2C24A033F100F379DA /* SwiftUIPullToRefresh */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91DEBF2B24A033F100F379DA /* XCRemoteSwiftPackageReference "SwiftUI-PullToRefresh" */;
+			productName = SwiftUIPullToRefresh;
 		};
 /* End XCSwiftPackageProductDependency section */
 

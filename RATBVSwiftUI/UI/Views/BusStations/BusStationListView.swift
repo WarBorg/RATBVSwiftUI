@@ -29,19 +29,19 @@ struct BusStationListView: View {
                         .multilineTextAlignment(.leading)
                 }
             }
-            .navigationBarTitle(Text(navBarTitle), displayMode: .inline)
+            .navigationBarTitle(Text("\(navBarTitle) \(busStationsViewModel.direction.rawValue)"), displayMode: .inline)
         .navigationBarItems(
             trailing:
                 HStack(spacing: 20) {
                     Button(action: {
-                        print("Reverse icon pressed...")
+                        self.busStationsViewModel.showReverseTripStations()
                     }) {
                         Image(systemName: "repeat")
                             .imageScale(.large)
                     }
                 
                     Button(action: {
-                        print("Download icon pressed...")
+                        self.busStationsViewModel.downloadAllStationTimetables()
                     }) {
                         Image(systemName: "icloud.and.arrow.down")
                             .imageScale(.large)
@@ -49,6 +49,10 @@ struct BusStationListView: View {
                 }
             )
         }
+        // Load data only after the view appeared
+//        .onAppear() {
+//            self.busStationsViewModel.getBusStations(isRefresh: false, shouldReverseWay: false)
+//        }
     }
 }
 

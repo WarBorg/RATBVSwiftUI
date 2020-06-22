@@ -16,6 +16,7 @@ enum TimeOfWeekType: String {
 }
 
 class BusTimetablesViewModel : ObservableObject {
+    @Injected private var busRepository: BusRepository
     @Injected private var busWebService: BusWebService
     
     //var busLines = CurrentValueSubject<[BusLine], Never>([])
@@ -34,17 +35,16 @@ class BusTimetablesViewModel : ObservableObject {
         getTimetableByTypeOfWeek()
     }
     
-    func getTimetableByTypeOfWeek() {
+    func getTimetableByTypeOfWeek(refresh: Bool = false) {
         
-        busWebService.getBusTimetables(scheduleLink: self.scheduleLink) { busTimetables in
-            
-            if (busTimetables.isEmpty) {
-                self.lastUpdateDate = "Never"
-                return
-            }
-            
+        busRepository.getBusTimetables(busStationId: self.busStationId,
+                                       schedualLink: self.scheduleLink,
+                                       isForcedRefresh: refresh) { busTimetables in
+//            busWebService.getBusTimetables(scheduleLink: self.scheduleLink) { busTimetables in
+                
+            guard let firstBusTimetable = busTimetables.first else { return }
             // Set the last updated date
-            self.lastUpdateDate = busTimetables[0].lastUpdateDate ?? "Never"
+            self.lastUpdateDate = firstBusTimetable.lastUpdateDate ?? "Never"
             
             self.weekdaysTimetable = busTimetables
                 .filter { $0.timeOfWeek == TimeOfWeekType.weekdays.rawValue }

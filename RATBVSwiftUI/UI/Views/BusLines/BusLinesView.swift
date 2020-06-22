@@ -12,13 +12,16 @@ import Resolver
 struct BusLinesView: View, Resolving {
     @InjectedObject private var busLinesViewModel: BusLinesViewModel
     @State private var currentTab = TransportTypeTabs.bus
+    @State private var isBusy = false
     private let navBarText = "Bus Lines"
     
     var body: some View {
         NavigationView {
             TabView(selection: $currentTab) {
                 BusLineListView(
+                    isBusy: $busLinesViewModel.isBusy,
                     busLines: busLinesViewModel.busLines,
+                    onRefresh: { self.busLinesViewModel.getBusLinesByType() },
                     lastUpdateDate: busLinesViewModel.lastUpdateDate)
                     .tabItem {
                         Image("tab-bus")
@@ -26,9 +29,11 @@ struct BusLinesView: View, Resolving {
                     }
                     .tag(TransportTypeTabs.bus)
                 
-                BusLineListView(
-                busLines: busLinesViewModel.midibusLines,
-                lastUpdateDate: busLinesViewModel.lastUpdateDate)
+                /*BusLineListView(
+                    isBusy: $busLinesViewModel.isBusy,
+                    busLines: busLinesViewModel.midibusLines,
+                    onRefresh: { self.busLinesViewModel.getBusLinesByType() },
+                    lastUpdateDate: busLinesViewModel.lastUpdateDate)
                     .tabItem {
                         Image("tab-midibus")
                             .font(.title)
@@ -37,14 +42,16 @@ struct BusLinesView: View, Resolving {
                     .tag(TransportTypeTabs.midibus)
                 
                 BusLineListView(
-                busLines: busLinesViewModel.trolleyBusLines,
-                lastUpdateDate: busLinesViewModel.lastUpdateDate)
+                    isBusy: $busLinesViewModel.isBusy,
+                    busLines: busLinesViewModel.trolleyBusLines,
+                    onRefresh: { self.busLinesViewModel.getBusLinesByType() },
+                    lastUpdateDate: busLinesViewModel.lastUpdateDate)
                     .tabItem {
                         Image("tab-trolleybus")
                             .font(.title)
                         Text(TransportTypeTabs.trolleybus.rawValue)
                     }
-                    .tag(TransportTypeTabs.trolleybus)
+                    .tag(TransportTypeTabs.trolleybus)*/
             }
             .navigationBarTitle(navBarText)
         }

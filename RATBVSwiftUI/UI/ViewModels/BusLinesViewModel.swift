@@ -17,25 +17,28 @@ enum TransportTypeTabs: String {
 }
 
 class BusLinesViewModel : ObservableObject {
-    @Injected private var busWebService: BusWebService
+    @Injected private var busRepository: BusRepository
     
     //var busLines = CurrentValueSubject<[BusLine], Never>([])
     @Published var busLines: [BusLineViewModel] = []
     @Published var midibusLines: [BusLineViewModel] = []
     @Published var trolleyBusLines: [BusLineViewModel] = []
     @Published var lastUpdateDate: String = "Never"
+    @Published var isBusy: Bool = false
     
     init() {
-        getBusLinesByType()
+        getBusLinesByType(refresh: false)
     }
     
-    func getBusLinesByType() {
+    func getBusLinesByType(refresh: Bool = false) {
         
-        busWebService.getBusLines() { busLines in
-            // Set the last updated date
-            self.lastUpdateDate = busLines[0].lastUpdateDate ?? "Never"
+        busRepository.getBusLines(isForcedRefresh: refresh)  { busLines in
+
+            guard let firstBusLine = busLines.first else { return }
+            self.lastUpdateDate = firstBusLine.lastUpdateDate ?? "Never"
+            let sortedBusLines = busLines.sorted()
             
-            self.busLines = busLines
+            self.busLines = sortedBusLines
                 .filter { $0.type == TransportTypeTabs.bus.rawValue }
                 .map { BusLineViewModel(busLine: $0) }
             
@@ -47,6 +50,8 @@ class BusLinesViewModel : ObservableObject {
                 .filter { $0.type == TransportTypeTabs.trolleybus.rawValue }
                 .map { BusLineViewModel(busLine: $0) }
         }
+        
+        self.isBusy = false
     }
     
     // Viewmodel class for bus line cells

@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct BusLine : Identifiable, Decodable {
+struct BusLine : Identifiable, Decodable, Comparable {
+
     let id: Int
     let name: String
     let route: String
@@ -40,5 +41,9 @@ struct BusLine : Identifiable, Decodable {
         self.linkNormalWay = mo.linkNormalWay ?? ""
         self.linkReverseWay = mo.linkReverseWay ?? ""
         self.lastUpdateDate = mo.lastUpdateDate ?? ""
+    }
+    
+    static func < (lhs: BusLine, rhs: BusLine) -> Bool {
+        return lhs.id < rhs.id
     }
 }

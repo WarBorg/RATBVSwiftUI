@@ -7,9 +7,12 @@
 //
 
 import SwiftUI
+import SwiftUIPullToRefresh
 
 struct BusLineListView: View {
+    @Binding var isBusy: Bool
     let busLines: [BusLinesViewModel.BusLineViewModel]
+    let onRefresh: () -> Void
     let lastUpdateDate: String
     
     var body: some View {
@@ -18,6 +21,13 @@ struct BusLineListView: View {
                 .padding(.trailing)
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .trailing)
+//            RefreshableList(showRefreshView: $isBusy, action: onRefresh) {
+//                ForEach(self.busLines, id: \.id) { busLine in
+//                    NavigationLink(destination: self.busStationsView(busLine: busLine)) {
+//                        BusLineCellView(busLineViewModel: busLine)
+//                    }
+//                }
+//            }
             
             List(busLines, id: \.id) { busLine in
                 NavigationLink(destination: self.busStationsView(busLine: busLine)) {
@@ -30,27 +40,29 @@ struct BusLineListView: View {
 
 private extension BusLineListView {
     func busStationsView(busLine : BusLinesViewModel.BusLineViewModel) -> some View {
-        BusStationListView(
-            busStationsViewModel: .init(busLineId: busLine.id,
-                                        linkNormalWay: busLine.linkNormalWay,
-                                        linkReverseWay: busLine.linkReverseWay),
-            navBarTitle: busLine.name)
+        // Use lazy navigation view initialisation
+        //NavigationLazyView(
+            BusStationListView(
+                busStationsViewModel: .init(busLineId: busLine.id,
+                                            linkNormalWay: busLine.linkNormalWay,
+                                            linkReverseWay: busLine.linkReverseWay),
+                navBarTitle: busLine.name)//)
     }
 }
 
 #if DEBUG
-struct BusLineListView_Previews: PreviewProvider {
-    static var previews: some View {
-        BusLineListView(
-            busLines: [BusLinesViewModel.BusLineViewModel(
-                busLine: BusLine(
-                    id: 0,
-                    name: "Test",
-                    route: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                    type: "Bus",
-                    linkNormalWay: "",
-                    linkReverseWay: ""))],
-            lastUpdateDate: "30.09.1985")
-    }
-}
+//struct BusLineListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BusLineListView(
+//            busLines: [BusLinesViewModel.BusLineViewModel(
+//                busLine: BusLine(
+//                    id: 0,
+//                    name: "Test",
+//                    route: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+//                    type: "Bus",
+//                    linkNormalWay: "",
+//                    linkReverseWay: ""))],
+//            lastUpdateDate: "30.09.1985")
+//    }
+//}
 #endif

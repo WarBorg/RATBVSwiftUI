@@ -11,7 +11,7 @@ import Foundation
 struct BusStation : Identifiable, Decodable {
     let id: UUID?
     let name: String
-    let direction: String?
+    var direction: String?
     let scheduleLink: String
     let lastUpdateDate: String?
     

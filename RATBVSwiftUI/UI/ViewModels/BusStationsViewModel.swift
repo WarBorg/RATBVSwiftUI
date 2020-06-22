@@ -9,62 +9,84 @@
 import Foundation
 import Resolver
 
+enum RouteDirections: String {
+    case normal = "Normal"
+    case reverse = "Reverse"
+}
+
 class BusStationsViewModel : ObservableObject {
-    @Injected private var busWebService: BusWebService
+    @Injected private var busRepository: BusRepository
     
     @Published var busStations: [BusStationViewModel] = []
     @Published var lastUpdateDate: String = "Never"
+    @Published var direction = RouteDirections.normal
     
     let busLineId: Int
     let linkNormalWay: String
     let linkReverseWay: String
     
-    private var isRefresh = false
+    private var directionLink = ""
 
     init(busLineId: Int, linkNormalWay: String, linkReverseWay: String) {
         self.busLineId = busLineId
         self.linkNormalWay = linkNormalWay
         self.linkReverseWay = linkReverseWay
         
-        getBusStations()
+        getBusStations(refresh: false, shouldReverseWay: false)
     }
     
-    func getBusStations() {
+    func getBusStations(refresh: Bool, shouldReverseWay: Bool) {
         // If there is a forced user refresh we want to keep the same Direction
-        if (!isRefresh)
+        if (!refresh)
         {
             // Initial view of the stations list should be normal way
-//            if (!shouldReverseWay)
-//            {
-//                Direction = RouteDirections.Normal;
-//
-//                _directionLink = _busLine.LinkNormalWay;
-//            }
-//            else if (shouldReverseWay && Direction == RouteDirections.Normal)
-//            {
-//                Direction = RouteDirections.Reverse;
-//
-//                _directionLink = _busLine.LinkReverseWay;
-//            }
-//            else if (shouldReverseWay && Direction == RouteDirections.Reverse)
-//            {
-//                Direction = RouteDirections.Normal;
-//
-//                _directionLink = _busLine.LinkNormalWay;
-//            }
+            if (!shouldReverseWay)
+            {
+                direction = RouteDirections.normal;
+                directionLink = self.linkNormalWay;
+            }
+            else if (shouldReverseWay && direction == RouteDirections.normal)
+            {
+                direction = RouteDirections.reverse;
+                directionLink = self.linkReverseWay;
+            }
+            else if (shouldReverseWay && direction == RouteDirections.reverse)
+            {
+                direction = RouteDirections.normal;
+                directionLink = self.linkNormalWay;
+            }
         }
         
-        busWebService.getBusStations(directionLink: self.linkNormalWay) { busStations in
+        // If there is a second try to load the data just return (NOT WORKING)
+        if (!refresh && !shouldReverseWay && !self.busStations.isEmpty)
+        {
+            return;
+        }
+        
+        busRepository.getBusStations(busLineId: self.busLineId,
+                                 directionLink:  self.linkNormalWay,
+                                 direction: self.directionLink,
+                                 isForcedRefresh: refresh) { busStations in
             
-            if (busStations.isEmpty) {
-                self.lastUpdateDate = "Never"
-                return
-            }
-                // Set the last updated date
-                self.lastUpdateDate = busStations[0].lastUpdateDate ?? "Never"
+            guard let firstBusStation = busStations.first else { return }
+            // Set the last updated date
+            self.lastUpdateDate = firstBusStation.lastUpdateDate ?? "Never"
                 
-                self.busStations = busStations
-                    .map { BusStationViewModel(busStation: $0) }
+            self.busStations = busStations
+                .map { BusStationViewModel(busStation: $0) }
+        }
+    }
+    
+    func showReverseTripStations() {
+        getBusStations(refresh: false, shouldReverseWay: true);
+    }
+    
+    func downloadAllStationTimetables() {
+        busRepository.downloadAllStationsTimetables(
+            busLineId: busLineId,
+            normalDirectionLink: linkNormalWay,
+            reverseDirectionLink: linkReverseWay) {
+                print("Download complete for all bus stations time tables")
         }
     }
     

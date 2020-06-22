@@ -6,11 +6,13 @@
 //  Copyright © 2020 Sergiu Cosmin. All rights reserved.
 //
 
+import UIKit
 import Resolver
 
 extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         registerViewModels()
-        registerServices()
+        registerServices(context)
     }
 }

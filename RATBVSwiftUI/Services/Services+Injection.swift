@@ -7,13 +7,15 @@
 //
 
 import Foundation
+import CoreData
 import Resolver
 
 extension Resolver {
-    public static func registerServices() {
+    public static func registerServices(_ managedObjectContext: NSManagedObjectContext) {
+        register { managedObjectContext as NSManagedObjectContext }
         register { AlamofireBusWebService() as BusWebService }
-        //register { CoreDataBusDataService() as BusDataService }
-        register { BusRepositoryImpl() as BusRepository }
+        register { CoreDataBusDataService(manageObjectContext: resolve()) as BusDataService }
+        register { RealBusRepository() as BusRepository }
     }
 }
 
