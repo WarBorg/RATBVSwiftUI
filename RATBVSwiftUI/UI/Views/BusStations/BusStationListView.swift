@@ -58,7 +58,7 @@ struct BusStationListView: View {
 
 private extension BusStationListView {
     func busTimetablesView(busStation : BusStationsViewModel.BusStationViewModel) -> some View {
-        BusTimetablesView(
+        BusTimetablesTabView(
             busTimetablesViewModel: .init(busStationId: busStation.id,
                                           scheduleLink: busStation.scheduleLink),
             navBarTitle: busStation.name)

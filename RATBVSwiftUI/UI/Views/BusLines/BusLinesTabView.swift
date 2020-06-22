@@ -9,7 +9,7 @@
 import SwiftUI
 import Resolver
 
-struct BusLinesView: View, Resolving {
+struct BusLinesTabView: View, Resolving {
     @InjectedObject private var busLinesViewModel: BusLinesViewModel
     @State private var currentTab = TransportTypeTabs.bus
     @State private var isBusy = false
@@ -61,7 +61,7 @@ struct BusLinesView: View, Resolving {
 #if DEBUG
 struct BusLinesView_Previews: PreviewProvider {
     static var previews: some View {
-        BusLinesView()
+        BusLinesTabView()
     }
 }
 #endif

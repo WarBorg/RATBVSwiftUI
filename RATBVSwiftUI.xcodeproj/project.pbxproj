@@ -19,9 +19,9 @@
 		919E98E324958B8900608EF0 /* BusLineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98E224958B8900608EF0 /* BusLineListView.swift */; };
 		919E98E52495966C00608EF0 /* BusStationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98E42495966C00608EF0 /* BusStationListView.swift */; };
 		919E98E72495979A00608EF0 /* BusTimetableListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98E62495979A00608EF0 /* BusTimetableListView.swift */; };
-		919E98F2249659E000608EF0 /* BusLinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98F1249659E000608EF0 /* BusLinesView.swift */; };
+		919E98F2249659E000608EF0 /* BusLinesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98F1249659E000608EF0 /* BusLinesTabView.swift */; };
 		919E98F4249664D700608EF0 /* BusTimetableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98F3249664D700608EF0 /* BusTimetableCellView.swift */; };
-		919E98F62496650100608EF0 /* BusTimetablesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98F52496650100608EF0 /* BusTimetablesView.swift */; };
+		919E98F62496650100608EF0 /* BusTimetablesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919E98F52496650100608EF0 /* BusTimetablesTabView.swift */; };
 		91A04AB7249AC35E0078942B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 91A04AB6249AC35E0078942B /* Alamofire */; };
 		91A04AB9249ACC550078942B /* BusLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A04AB8249ACC550078942B /* BusLine.swift */; };
 		91A04ABB249AD1650078942B /* BusLinesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A04ABA249AD1650078942B /* BusLinesViewModel.swift */; };
@@ -72,9 +72,9 @@
 		919E98E224958B8900608EF0 /* BusLineListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLineListView.swift; sourceTree = "<group>"; };
 		919E98E42495966C00608EF0 /* BusStationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStationListView.swift; sourceTree = "<group>"; };
 		919E98E62495979A00608EF0 /* BusTimetableListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTimetableListView.swift; sourceTree = "<group>"; };
-		919E98F1249659E000608EF0 /* BusLinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLinesView.swift; sourceTree = "<group>"; };
+		919E98F1249659E000608EF0 /* BusLinesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLinesTabView.swift; sourceTree = "<group>"; };
 		919E98F3249664D700608EF0 /* BusTimetableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTimetableCellView.swift; sourceTree = "<group>"; };
-		919E98F52496650100608EF0 /* BusTimetablesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTimetablesView.swift; sourceTree = "<group>"; };
+		919E98F52496650100608EF0 /* BusTimetablesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTimetablesTabView.swift; sourceTree = "<group>"; };
 		91A04AB8249ACC550078942B /* BusLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLine.swift; sourceTree = "<group>"; };
 		91A04ABA249AD1650078942B /* BusLinesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLinesViewModel.swift; sourceTree = "<group>"; };
 		91DEBF03249EE3B500F379DA /* BusStationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStationsViewModel.swift; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 		919E98EA249658B100608EF0 /* BusLines */ = {
 			isa = PBXGroup;
 			children = (
-				919E98F1249659E000608EF0 /* BusLinesView.swift */,
+				919E98F1249659E000608EF0 /* BusLinesTabView.swift */,
 				919E98E224958B8900608EF0 /* BusLineListView.swift */,
 				919E98E0249035C000608EF0 /* BusLineCellView.swift */,
 			);
@@ -212,7 +212,7 @@
 		919E98EC249658CD00608EF0 /* BusTimetables */ = {
 			isa = PBXGroup;
 			children = (
-				919E98F52496650100608EF0 /* BusTimetablesView.swift */,
+				919E98F52496650100608EF0 /* BusTimetablesTabView.swift */,
 				919E98E62495979A00608EF0 /* BusTimetableListView.swift */,
 				919E98F3249664D700608EF0 /* BusTimetableCellView.swift */,
 			);
@@ -402,7 +402,7 @@
 				919E98E52495966C00608EF0 /* BusStationListView.swift in Sources */,
 				91DEBF3024A09D5500F379DA /* NavigationLazyView.swift in Sources */,
 				919E98F4249664D700608EF0 /* BusTimetableCellView.swift in Sources */,
-				919E98F62496650100608EF0 /* BusTimetablesView.swift in Sources */,
+				919E98F62496650100608EF0 /* BusTimetablesTabView.swift in Sources */,
 				911DB4A22486FDD80058C15F /* AppDelegate.swift in Sources */,
 				91DEBF06249EE6DA00F379DA /* BusStation.swift in Sources */,
 				91DEBF2824A00F9B00F379DA /* BusRepository.swift in Sources */,
@@ -417,7 +417,7 @@
 				91DEBF3224A0AB7200F379DA /* Date+Extensions.swift in Sources */,
 				91DEBF16249FC76D00F379DA /* ViewModels+Injection.swift in Sources */,
 				91A04AB9249ACC550078942B /* BusLine.swift in Sources */,
-				919E98F2249659E000608EF0 /* BusLinesView.swift in Sources */,
+				919E98F2249659E000608EF0 /* BusLinesTabView.swift in Sources */,
 				91DEBF2624A00D0300F379DA /* BusWebService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

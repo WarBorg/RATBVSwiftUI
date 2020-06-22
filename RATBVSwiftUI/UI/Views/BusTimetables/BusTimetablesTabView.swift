@@ -14,7 +14,7 @@ enum TimetableTabs: String {
     case sunday = "Sunday"
 }
 
-struct BusTimetablesView: View {
+struct BusTimetablesTabView: View {
     @ObservedObject private(set) var busTimetablesViewModel: BusTimetablesViewModel
     let navBarTitle: String
     
@@ -51,7 +51,7 @@ struct BusTimetablesView: View {
 //#if DEBUG
 //struct BusTimetablesView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        BusTimetablesView(navBarTitle: "Test Station")
+//        BusTimetablesTabView(navBarTitle: "Test Station")
 //    }
 //}
 //#endif

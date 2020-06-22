@@ -13,7 +13,7 @@ struct ContentView: View {
     @ObservedObject private var busLineViewModel = BusLinesViewModel()
     
     var body: some View {
-        BusLinesView()
+        BusLinesTabView()
         //Text(busLineViewModel.busLines)
     }
 }
