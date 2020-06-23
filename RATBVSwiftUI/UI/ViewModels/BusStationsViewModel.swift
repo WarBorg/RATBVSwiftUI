@@ -19,66 +19,73 @@ class BusStationsViewModel : ObservableObject {
     
     @Published var busStations: [BusStationViewModel] = []
     @Published var lastUpdateDate: String = "Never"
-    @Published var direction = RouteDirections.normal
+    @Published var direction: RouteDirections = RouteDirections.normal
     
     let busLineId: Int
     let linkNormalWay: String
     let linkReverseWay: String
     
     private var directionLink = ""
-
+    
     init(busLineId: Int, linkNormalWay: String, linkReverseWay: String) {
         self.busLineId = busLineId
         self.linkNormalWay = linkNormalWay
         self.linkReverseWay = linkReverseWay
-        
-        getBusStations(refresh: false, shouldReverseWay: false)
     }
     
-    func getBusStations(refresh: Bool, shouldReverseWay: Bool) {
+    func getBusStations(refresh: Bool, shouldReverseWay: Bool, completion: @escaping () -> (Void)) {
         // If there is a forced user refresh we want to keep the same Direction
         if (!refresh)
         {
             // Initial view of the stations list should be normal way
             if (!shouldReverseWay)
             {
-                direction = RouteDirections.normal;
-                directionLink = self.linkNormalWay;
+                directionLink = direction == RouteDirections.reverse ? self.linkReverseWay : self.linkNormalWay
             }
             else if (shouldReverseWay && direction == RouteDirections.normal)
             {
-                direction = RouteDirections.reverse;
-                directionLink = self.linkReverseWay;
+                direction = RouteDirections.reverse
+                directionLink = self.linkReverseWay
             }
             else if (shouldReverseWay && direction == RouteDirections.reverse)
             {
-                direction = RouteDirections.normal;
-                directionLink = self.linkNormalWay;
+                direction = RouteDirections.normal
+                directionLink = self.linkNormalWay
             }
         }
         
         // If there is a second try to load the data just return (NOT WORKING)
         if (!refresh && !shouldReverseWay && !self.busStations.isEmpty)
         {
+            completion()
             return;
         }
         
         busRepository.getBusStations(busLineId: self.busLineId,
-                                 directionLink:  self.linkNormalWay,
-                                 direction: self.directionLink,
-                                 isForcedRefresh: refresh) { busStations in
-            
+                                     directionLink:  self.linkNormalWay,
+                                     direction: self.directionLink,
+                                     isForcedRefresh: refresh)
+        { busStations in
             guard let firstBusStation = busStations.first else { return }
             // Set the last updated date
             self.lastUpdateDate = firstBusStation.lastUpdateDate ?? "Never"
-                
-            self.busStations = busStations
-                .map { BusStationViewModel(busStation: $0) }
+            
+            if self.direction == RouteDirections.reverse {
+                self.busStations = busStations
+                    .sorted()
+                    .reversed()
+                    .map { BusStationViewModel(busStation: $0) }
+            } else {
+                self.busStations = busStations
+                    .sorted()
+                    .map { BusStationViewModel(busStation: $0) }
+            }
+            completion()
         }
     }
     
     func showReverseTripStations() {
-        getBusStations(refresh: false, shouldReverseWay: true);
+        getBusStations(refresh: false, shouldReverseWay: true, completion: {})
     }
     
     func downloadAllStationTimetables() {
@@ -97,7 +104,7 @@ class BusStationsViewModel : ObservableObject {
         let scheduleLink: String
         
         init(busStation: BusStation) {
-            self.id = busStation.id ?? UUID()
+            self.id = busStation.id
             self.name = busStation.name
             self.scheduleLink = busStation.scheduleLink
         }

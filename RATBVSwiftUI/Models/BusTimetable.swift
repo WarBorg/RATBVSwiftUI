@@ -8,17 +8,20 @@
 
 import Foundation
 
-struct BusTimetable : Identifiable, Decodable {
-    let id: UUID?
+struct BusTimetable : Identifiable {
+    let id: UUID
+    var oid: Int64 = Int64.min
     let hour: String
     let minutes: String
     let timeOfWeek: String
-    let lastUpdateDate: String?
+    var lastUpdateDate: String?
     
-    init(hour: String,
+    init(oid: Int64,
+         hour: String,
          minutes: String,
          timeOfWeek: String) {
         self.id = UUID()
+        self.oid = oid
         self.hour = hour
         self.minutes = minutes
         self.timeOfWeek = timeOfWeek
@@ -27,9 +30,32 @@ struct BusTimetable : Identifiable, Decodable {
     
     init(mo: BusTimetableMO) {
         self.id = mo.id ?? UUID()
+        self.oid = mo.oid
         self.hour = mo.hour ?? ""
         self.minutes = mo.minutes ?? ""
         self.timeOfWeek = mo.timeOfWeek ?? ""
         self.lastUpdateDate = mo.lastUpdateDate ?? ""
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case hour
+        case minutes
+        case timeOfWeek
+    }
+}
+
+extension BusTimetable: Comparable {
+    static func < (lhs: BusTimetable, rhs: BusTimetable) -> Bool {
+        return lhs.oid < rhs.oid
+    }
+}
+
+extension BusTimetable: Decodable {
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = UUID()
+        hour = try values.decode(String.self, forKey: .hour)
+        minutes = try values.decode(String.self, forKey: .minutes)
+        timeOfWeek = try values.decode(String.self, forKey: .timeOfWeek)
     }
 }

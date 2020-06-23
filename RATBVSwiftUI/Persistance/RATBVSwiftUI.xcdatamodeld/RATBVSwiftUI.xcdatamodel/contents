@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F96" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="BusLine" representedClassName="BusLineMO" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="lastUpdateDate" optional="YES" attributeType="String"/>
@@ -20,12 +20,16 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="lastUpdateDate" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="oid" attributeType="Integer 64" usesScalarValueType="YES"/>
         <attribute name="scheduleLink" optional="YES" attributeType="String"/>
-        <relationship name="busLine" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="BusLine" inverseName="stations" inverseEntity="BusLine"/>
+        <relationship name="busLine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusLine" inverseName="stations" inverseEntity="BusLine"/>
         <relationship name="timetables" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="BusTimetable" inverseName="station" inverseEntity="BusTimetable"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
+            </uniquenessConstraint>
+            <uniquenessConstraint>
+                <constraint value="oid"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
@@ -34,17 +38,21 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="lastUpdateDate" optional="YES" attributeType="String"/>
         <attribute name="minutes" optional="YES" attributeType="String"/>
+        <attribute name="oid" attributeType="Integer 64" usesScalarValueType="YES"/>
         <attribute name="timeOfWeek" optional="YES" attributeType="String"/>
-        <relationship name="station" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="BusStation" inverseName="timetables" inverseEntity="BusStation"/>
+        <relationship name="station" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusStation" inverseName="timetables" inverseEntity="BusStation"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
+            </uniquenessConstraint>
+            <uniquenessConstraint>
+                <constraint value="oid"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
     <elements>
         <element name="BusLine" positionX="-322.30078125" positionY="48.27734375" width="128" height="163"/>
-        <element name="BusStation" positionX="-141.1875" positionY="78.4453125" width="128" height="148"/>
-        <element name="BusTimetable" positionX="35.67578125" positionY="81.65234375" width="128" height="133"/>
+        <element name="BusStation" positionX="-141.1875" positionY="78.4453125" width="128" height="163"/>
+        <element name="BusTimetable" positionX="35.67578125" positionY="81.65234375" width="128" height="148"/>
     </elements>
 </model>

@@ -16,12 +16,19 @@ enum TimetableTabs: String {
 
 struct BusTimetablesTabView: View {
     @ObservedObject private(set) var busTimetablesViewModel: BusTimetablesViewModel
+    @State private var isBusy = false
     let navBarTitle: String
     
     var body: some View {
         TabView {
             BusTimetableListView(
+                isBusy: $isBusy,
                 busTimetables: busTimetablesViewModel.weekdaysTimetable,
+                onRefresh: { self.busTimetablesViewModel.getTimetableByTypeOfWeek(
+                    refresh: true,
+                    completion: {
+                        self.isBusy = false
+                }) },
                 lastUpdateDate: busTimetablesViewModel.lastUpdateDate)
                 .tabItem {
                     Text(TimetableTabs.weekdays.rawValue)
@@ -29,7 +36,13 @@ struct BusTimetablesTabView: View {
             .tag(TimetableTabs.weekdays)
             
             BusTimetableListView(
+            isBusy: $isBusy,
                 busTimetables: busTimetablesViewModel.saturdayTimetable,
+                onRefresh: { self.busTimetablesViewModel.getTimetableByTypeOfWeek(
+                    refresh: true,
+                    completion: {
+                        self.isBusy = false
+                }) },
                 lastUpdateDate: busTimetablesViewModel.lastUpdateDate)
                 .tabItem {
                     Text(TimetableTabs.saturday.rawValue)
@@ -37,7 +50,13 @@ struct BusTimetablesTabView: View {
             .tag(TimetableTabs.saturday)
             
             BusTimetableListView(
+            isBusy: $isBusy,
                 busTimetables: busTimetablesViewModel.sundayTimetable,
+                onRefresh: { self.busTimetablesViewModel.getTimetableByTypeOfWeek(
+                    refresh: true,
+                    completion: {
+                        self.isBusy = false
+                }) },
                 lastUpdateDate: busTimetablesViewModel.lastUpdateDate)
                 .tabItem {
                     Text(TimetableTabs.sunday.rawValue)
@@ -45,7 +64,14 @@ struct BusTimetablesTabView: View {
             .tag(TimetableTabs.sunday)
         }
         .navigationBarTitle(Text(navBarTitle), displayMode: .inline)
+        .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear() {
+            self.busTimetablesViewModel.getTimetableByTypeOfWeek(refresh: false, completion: {})
+        }
     }
+    
+    
+    
 }
 
 //#if DEBUG

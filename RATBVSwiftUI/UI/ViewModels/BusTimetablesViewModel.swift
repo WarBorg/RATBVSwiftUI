@@ -24,40 +24,46 @@ class BusTimetablesViewModel : ObservableObject {
     @Published var saturdayTimetable: [BusTimetableViewModel] = []
     @Published var sundayTimetable: [BusTimetableViewModel] = []
     @Published var lastUpdateDate: String = "Never"
-
+    
     let busStationId: UUID
     let scheduleLink: String
     
     init(busStationId: UUID, scheduleLink: String) {
         self.busStationId = busStationId
         self.scheduleLink = scheduleLink
-        
-        getTimetableByTypeOfWeek()
     }
     
-    func getTimetableByTypeOfWeek(refresh: Bool = false) {
+    func getTimetableByTypeOfWeek(refresh: Bool = false, completion: @escaping () -> (Void)) {
         
         busRepository.getBusTimetables(busStationId: self.busStationId,
-                                       schedualLink: self.scheduleLink,
-                                       isForcedRefresh: refresh) { busTimetables in
-//            busWebService.getBusTimetables(scheduleLink: self.scheduleLink) { busTimetables in
-                
-            guard let firstBusTimetable = busTimetables.first else { return }
+                                       scheduleLink: self.scheduleLink,
+                                       isForcedRefresh: refresh)
+        { busTimetables in
+            
+            guard let firstBusTimetable = busTimetables.first else
+            {
+                completion()
+                return
+            }
             // Set the last updated date
             self.lastUpdateDate = firstBusTimetable.lastUpdateDate ?? "Never"
             
-            self.weekdaysTimetable = busTimetables
+            let sortedBusTimetables = busTimetables.sorted()
+            
+            self.weekdaysTimetable = sortedBusTimetables
                 .filter { $0.timeOfWeek == TimeOfWeekType.weekdays.rawValue }
                 .map { BusTimetableViewModel(busTimetable: $0) }
             
-            self.saturdayTimetable = busTimetables
+            self.saturdayTimetable = sortedBusTimetables
                 .filter { $0.timeOfWeek == TimeOfWeekType.saturday.rawValue }
                 .map { BusTimetableViewModel(busTimetable: $0) }
             
-            self.sundayTimetable = busTimetables
+            self.sundayTimetable = sortedBusTimetables
                 .filter { $0.timeOfWeek == TimeOfWeekType.sunday.rawValue }
                 .map { BusTimetableViewModel(busTimetable: $0) }
-            }
+                
+            completion()
+        }
     }
     
     // Viewmodel class for bus timetable cells
@@ -67,7 +73,7 @@ class BusTimetablesViewModel : ObservableObject {
         @Published var minutes: String
         
         init(busTimetable: BusTimetable) {
-            self.id = busTimetable.id ?? UUID()
+            self.id = busTimetable.id
             self.hour = busTimetable.hour
             self.minutes = busTimetable.minutes
         }

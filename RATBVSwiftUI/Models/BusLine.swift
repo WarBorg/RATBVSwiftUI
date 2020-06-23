@@ -10,7 +10,7 @@ import Foundation
 
 struct BusLine : Identifiable, Decodable, Comparable {
 
-    let id: Int
+    let id: Int // oid
     let name: String
     let route: String
     let type: String

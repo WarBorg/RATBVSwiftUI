@@ -24,13 +24,8 @@ class BusLinesViewModel : ObservableObject {
     @Published var midibusLines: [BusLineViewModel] = []
     @Published var trolleyBusLines: [BusLineViewModel] = []
     @Published var lastUpdateDate: String = "Never"
-    @Published var isBusy: Bool = false
     
-    init() {
-        getBusLinesByType(refresh: false)
-    }
-    
-    func getBusLinesByType(refresh: Bool = false) {
+    func getBusLinesByType(refresh: Bool = false, completion: @escaping () -> Void) {
         
         busRepository.getBusLines(isForcedRefresh: refresh)  { busLines in
 
@@ -49,9 +44,9 @@ class BusLinesViewModel : ObservableObject {
             self.trolleyBusLines = busLines
                 .filter { $0.type == TransportTypeTabs.trolleybus.rawValue }
                 .map { BusLineViewModel(busLine: $0) }
+            
+            completion()
         }
-        
-        self.isBusy = false
     }
     
     // Viewmodel class for bus line cells

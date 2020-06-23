@@ -7,9 +7,12 @@
 //
 
 import SwiftUI
+import SwiftUIRefresh
 
 struct BusTimetableListView: View {
+    @Binding var isBusy: Bool
     let busTimetables: [BusTimetablesViewModel.BusTimetableViewModel]
+    let onRefresh: () -> Void
     let lastUpdateDate: String
     
     var body: some View {
@@ -35,6 +38,7 @@ struct BusTimetableListView: View {
             List(busTimetables, id: \.id) { busTimetable in
                 BusTimetableCellView(busTimetableViewModel: busTimetable)
             }
+            .pullToRefresh(isShowing: $isBusy, onRefresh: onRefresh)
             .layoutPriority(100)
         }
     }
@@ -44,11 +48,14 @@ struct BusTimetableListView: View {
 struct BusTimetableListView_Previews: PreviewProvider {
     static var previews: some View {
         BusTimetableListView(
+            isBusy: .constant(false),
             busTimetables: [BusTimetablesViewModel.BusTimetableViewModel(
                 busTimetable: BusTimetable(
+                    oid: 1,
                     hour: "15",
                     minutes: "02 11 20 29 38 48",
                     timeOfWeek: "Saturday"))],
+            onRefresh: {},
             lastUpdateDate: "30.09.1985"
         )
     }

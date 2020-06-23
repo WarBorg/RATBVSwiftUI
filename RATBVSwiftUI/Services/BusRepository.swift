@@ -15,7 +15,7 @@ protocol BusRepository {
     
     func getBusStations(busLineId: Int, directionLink: String, direction: String, isForcedRefresh: Bool, completion: @escaping ([BusStation]) -> Void)
     
-    func getBusTimetables(busStationId: UUID, schedualLink: String, isForcedRefresh: Bool, completion: @escaping ([BusTimetable]) -> Void)
+    func getBusTimetables(busStationId: UUID, scheduleLink: String, isForcedRefresh: Bool, completion: @escaping ([BusTimetable]) -> Void)
     
     func downloadAllStationsTimetables(busLineId: Int, normalDirectionLink: String, reverseDirectionLink: String, completion: @escaping () -> Void)
 }
@@ -58,17 +58,19 @@ class RealBusRepository : BusRepository {
         }
     }
     
-    func getBusTimetables(busStationId: UUID, schedualLink: String, isForcedRefresh: Bool, completion: @escaping ([BusTimetable]) -> Void) {
+    func getBusTimetables(busStationId: UUID, scheduleLink: String, isForcedRefresh: Bool, completion: @escaping ([BusTimetable]) -> Void) {
         let busTimetablesCount = self.busDataService.countBusTimeTableByBusStationId(busStationId: busStationId)
         
-        if (isForcedRefresh || busTimetablesCount == 0) {
-            self.busWebService.getBusTimetables(scheduleLink: schedualLink,
+        if isForcedRefresh || busTimetablesCount == 0 {
+            self.busWebService.getBusTimetables(scheduleLink: scheduleLink,
                                                 completion:
                 { timeTables in
                     self.busDataService.clearBusTimetablesByBusStationId(for: busStationId)
-                    self.busDataService.insertBusTimeTables(for: busStationId, busTimeTables: timeTables, lastUpdated: Date())
+                    self.busDataService.insertBusTimeTables(for: busStationId,
+                                                            busTimeTables: timeTables,
+                                                            lastUpdated: Date())
                     let currentBusTimetables = self.busDataService.getBusTimeTableByBusStationId(busStationId: busStationId)
-                    completion(currentBusTimetables)
+                    completion(currentBusTimetables)     
             })
         } else {
             let currentBusTimetables = self.busDataService.getBusTimeTableByBusStationId(busStationId: busStationId)
@@ -95,8 +97,7 @@ class RealBusRepository : BusRepository {
                 for station in busStations {
                     self.busWebService.getBusTimetables(scheduleLink: station.scheduleLink)
                     { timetables in
-                        guard let stationId = station.id else { return }
-                        self.busDataService.insertBusTimeTables(for: stationId,
+                        self.busDataService.insertBusTimeTables(for: station.id,
                                                                 busTimeTables: timetables,
                                                                 lastUpdated: Date())
                     }

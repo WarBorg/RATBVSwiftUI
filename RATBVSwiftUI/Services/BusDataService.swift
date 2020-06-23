@@ -69,7 +69,9 @@ class CoreDataBusDataService: BusDataService {
             mo.lastUpdateDate = lastUpdated.formatted()
         }
         do {
-            try self.manageObjectContext.save()
+            if self.manageObjectContext.hasChanges {
+                try self.manageObjectContext.save()
+            }
         } catch {
             print("Failed saving bus lines: \(error.localizedDescription)")
         }
@@ -91,7 +93,7 @@ class CoreDataBusDataService: BusDataService {
         guard let line = self.busLine(for: busLineId) else { return 0 }
         guard let stations = line.stations else { return 0 }
         return stations
-            .filtered(using: NSPredicate(format: "direction = %@ || direction == nil", direction))
+            .filtered(using: NSPredicate(format: "direction = %@ OR direction == nil", direction))
             .count
     }
     
@@ -99,32 +101,43 @@ class CoreDataBusDataService: BusDataService {
         guard let line = self.busLine(for: busLineId) else { return [] }
         guard let stations = line.stations else { return [] }
         return stations
-            .filtered(using: NSPredicate(format: "direction = %@ || direction == nil", direction))
+            .filtered(using: NSPredicate(format: "direction = %@ OR direction == nil", direction))
             .map( { BusStation(mo: $0 as! BusStationMO) } )
     }
     
     func insertBusStations(for busLineId: Int, busStations: [BusStation], lastUpdated: Date) {
         guard let busLine = self.busLine(for: busLineId) else { return }
         
-        for station in busStations {
+        for (index, station) in busStations.enumerated() {
             let mo = BusStationMO(context: self.manageObjectContext)
+            mo.oid = Int64(index)
             mo.from(busStation: station)
             mo.lastUpdateDate = lastUpdated.formatted()
+            mo.busLine = busLine
             busLine.addToStations(mo)
         }
+        
         do {
-            try self.manageObjectContext.save()
+            if self.manageObjectContext.hasChanges {
+                try self.manageObjectContext.save()
+            }
         } catch {
-            print("Failed saving bus stations: \(error.localizedDescription)")
+            print("Failed saving bus stations for bus line id \(busLineId): \(error.localizedDescription)")
         }
     }
     
     func clearBusStationsByBusLineId(for busLineId: Int) {
         do {
-            self.busLine(for: busLineId)?.stations  = nil
-            try self.manageObjectContext.save()
+            guard let stations = self.busLine(for: busLineId)?.stations else { return }
+            for station in stations {
+                guard let mo = station as? NSManagedObject else { continue }
+                self.manageObjectContext.delete(mo)
+            }
+            if self.manageObjectContext.hasChanges {
+                try self.manageObjectContext.save()
+            }
         } catch {
-            print("Failed clearing bus stations by bus line id: \(error.localizedDescription)")
+            print("Failed clearing bus stations by bus line id \(busLineId): \(error.localizedDescription)")
         }
     }
     
@@ -132,10 +145,17 @@ class CoreDataBusDataService: BusDataService {
         do {
             guard let line = self.busLine(for: busLineId) else { return }
             guard let stations = line.stations?.filtered(using: NSPredicate(format: "direction = %@", direction)) as NSSet? else { return }
-            line.removeFromStations(stations)
-            try self.manageObjectContext.save()
+           
+            for station in stations {
+                guard let mo = station as? NSManagedObject else { continue }
+                self.manageObjectContext.delete(mo)
+            }
+            
+            if self.manageObjectContext.hasChanges {
+                try self.manageObjectContext.save()
+            }
         } catch {
-            print("Failed clearing bus stations by bus line and direction: \(error.localizedDescription)")
+            print("Failed clearing bus stations by bus line id \(busLineId) and direction: \(error.localizedDescription)")
         }
     }
     
@@ -154,26 +174,37 @@ class CoreDataBusDataService: BusDataService {
     func insertBusTimeTables(for busStationId: UUID, busTimeTables: [BusTimetable], lastUpdated: Date) {
         guard let busStation = self.busStation(for: busStationId) else { return }
         
-        for timeTable in busTimeTables {
+        for (index, timeTable) in busTimeTables.enumerated() {
             let mo = BusTimetableMO(context: self.manageObjectContext)
+            mo.oid = Int64(index)
             mo.from(busTimetable: timeTable)
             mo.lastUpdateDate = lastUpdated.formatted()
             mo.station = busStation
         }
         
         do {
-            try self.manageObjectContext.save()
+            if self.manageObjectContext.hasChanges {
+                try self.manageObjectContext.save()
+            }
         } catch {
-            print("Failed saving bus timetables: \(error.localizedDescription)")
+            print("Failed saving bus timetables \(busStationId): \(error.localizedDescription)")
         }
     }
     
     func clearBusTimetablesByBusStationId(for busStationId: UUID) {
         do {
-            self.busStation(for: busStationId)?.timetables = nil
-            try self.manageObjectContext.save()
+            guard let timetables = self.busStation(for: busStationId)?.timetables else { return }
+          
+            for timetable in timetables {
+                guard let mo = timetable as? NSManagedObject else { continue }
+                self.manageObjectContext.delete(mo)
+            }
+            
+            if self.manageObjectContext.hasChanges {
+                try self.manageObjectContext.save()
+            }
         } catch {
-            print("Failed clearing bus timetables: \(error.localizedDescription)")
+            print("Failed clearing bus timetables \(busStationId): \(error.localizedDescription)")
         }
     }
     

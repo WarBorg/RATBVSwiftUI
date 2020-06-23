@@ -17,11 +17,13 @@ protocol BusWebService {
 
 class AlamofireBusWebService : BusWebService{
 
+    let busWebAPIBaseAddress = "https://ratbvwebapi.azurewebsites.net/api/"
+    
     func getBusLines(completion: @escaping ([BusLine]) -> Void) {
         
         AF
-        .request("https://ratbvwebapi.azurewebsites.net/api/buslines/")
-        .validate()
+            .request("\(busWebAPIBaseAddress)buslines/")
+            .validate()
             .responseDecodable(of: [BusLine].self) { response in
                 switch(response.result) {
                     case .success(_):
@@ -36,7 +38,7 @@ class AlamofireBusWebService : BusWebService{
     
     func getBusStations(directionLink: String, completion: @escaping ([BusStation]) -> Void) {
         
-        let requestAddress = "https://ratbvwebapi.azurewebsites.net/api/busstations/\(directionLink)"
+        let requestAddress = "\(busWebAPIBaseAddress)busstations/\(directionLink)"
         
         AF
             .request(requestAddress)
@@ -55,7 +57,7 @@ class AlamofireBusWebService : BusWebService{
     
     func getBusTimetables(scheduleLink: String, completion: @escaping ([BusTimetable]) -> Void) {
         
-        let requestAddress = "https://ratbvwebapi.azurewebsites.net/api/bustimetables/\(scheduleLink)"
+        let requestAddress = "\(busWebAPIBaseAddress)bustimetables/\(scheduleLink)"
         
         AF
         .request(requestAddress)

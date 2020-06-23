@@ -7,13 +7,13 @@
 //
 
 import SwiftUI
-import SwiftUIPullToRefresh
+import SwiftUIRefresh
 
 struct BusLineListView: View {
     @Binding var isBusy: Bool
     let busLines: [BusLinesViewModel.BusLineViewModel]
     let onRefresh: () -> Void
-    let lastUpdateDate: String
+    var lastUpdateDate: String
     
     var body: some View {
         VStack {
@@ -21,19 +21,13 @@ struct BusLineListView: View {
                 .padding(.trailing)
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .trailing)
-//            RefreshableList(showRefreshView: $isBusy, action: onRefresh) {
-//                ForEach(self.busLines, id: \.id) { busLine in
-//                    NavigationLink(destination: self.busStationsView(busLine: busLine)) {
-//                        BusLineCellView(busLineViewModel: busLine)
-//                    }
-//                }
-//            }
-            
-            List(busLines, id: \.id) { busLine in
-                NavigationLink(destination: self.busStationsView(busLine: busLine)) {
+
+                List(self.busLines, id: \.id) { busLine in
+                    NavigationLink(destination: self.busStationsView(busLine: busLine)) {
                         BusLineCellView(busLineViewModel: busLine)
+                    }
                 }
-            }
+                .pullToRefresh(isShowing: $isBusy, onRefresh: onRefresh)
         }
     }
 }
@@ -41,12 +35,13 @@ struct BusLineListView: View {
 private extension BusLineListView {
     func busStationsView(busLine : BusLinesViewModel.BusLineViewModel) -> some View {
         // Use lazy navigation view initialisation
-        //NavigationLazyView(
-            BusStationListView(
-                busStationsViewModel: .init(busLineId: busLine.id,
-                                            linkNormalWay: busLine.linkNormalWay,
-                                            linkReverseWay: busLine.linkReverseWay),
-                navBarTitle: busLine.name)//)
+        // NavigationLazyView(
+        BusStationListView(
+            busStationsViewModel: .init(busLineId: busLine.id,
+                                        linkNormalWay: busLine.linkNormalWay,
+                                        linkReverseWay: busLine.linkReverseWay),
+            navBarTitle: busLine.name)
+        // )
     }
 }
 

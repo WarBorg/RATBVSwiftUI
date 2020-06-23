@@ -28,6 +28,7 @@ struct BusTimetableCellView_Previews: PreviewProvider {
     static var previews: some View {
         BusTimetableCellView(busTimetableViewModel: BusTimetablesViewModel.BusTimetableViewModel(
             busTimetable: BusTimetable(
+                oid: 1,
                 hour: "15",
                 minutes: "02 11 20 29 38 48",
                 timeOfWeek: "Saturday")))

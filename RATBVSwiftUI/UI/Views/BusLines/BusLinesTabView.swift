@@ -18,42 +18,61 @@ struct BusLinesTabView: View, Resolving {
     var body: some View {
         NavigationView {
             TabView(selection: $currentTab) {
-                BusLineListView(
-                    isBusy: $busLinesViewModel.isBusy,
+                BusLineListView(isBusy: $isBusy,
                     busLines: busLinesViewModel.busLines,
-                    onRefresh: { self.busLinesViewModel.getBusLinesByType() },
+                    onRefresh: { self.busLinesViewModel.getBusLinesByType(
+                        refresh: true,
+                        completion: {
+                            self.isBusy = false
+                    }) },
                     lastUpdateDate: busLinesViewModel.lastUpdateDate)
                     .tabItem {
                         Image("tab-bus")
                         Text(TransportTypeTabs.bus.rawValue)
-                    }
-                    .tag(TransportTypeTabs.bus)
+                }
+                .tag(TransportTypeTabs.bus)
                 
-                /*BusLineListView(
-                    isBusy: $busLinesViewModel.isBusy,
+                BusLineListView(
+                    isBusy: $isBusy,
                     busLines: busLinesViewModel.midibusLines,
-                    onRefresh: { self.busLinesViewModel.getBusLinesByType() },
+                    onRefresh: { self.busLinesViewModel.getBusLinesByType(
+                        refresh: true,
+                        completion: {
+                            self.isBusy = false
+                    }) },
                     lastUpdateDate: busLinesViewModel.lastUpdateDate)
                     .tabItem {
                         Image("tab-midibus")
                             .font(.title)
                         Text(TransportTypeTabs.midibus.rawValue)
-                    }
-                    .tag(TransportTypeTabs.midibus)
+                }
+                .tag(TransportTypeTabs.midibus)
                 
                 BusLineListView(
-                    isBusy: $busLinesViewModel.isBusy,
+                    isBusy: $isBusy,
                     busLines: busLinesViewModel.trolleyBusLines,
-                    onRefresh: { self.busLinesViewModel.getBusLinesByType() },
+                    onRefresh: { self.busLinesViewModel.getBusLinesByType(
+                        refresh: true,
+                        completion: {
+                            self.isBusy = false
+                    }) },
                     lastUpdateDate: busLinesViewModel.lastUpdateDate)
                     .tabItem {
                         Image("tab-trolleybus")
                             .font(.title)
                         Text(TransportTypeTabs.trolleybus.rawValue)
-                    }
-                    .tag(TransportTypeTabs.trolleybus)*/
+                }
+                .tag(TransportTypeTabs.trolleybus)
             }
             .navigationBarTitle(navBarText)
+            .navigationViewStyle(StackNavigationViewStyle())
+        }
+        .onAppear() {
+            self.busLinesViewModel.getBusLinesByType(
+                refresh: false,
+                completion: {
+                    self.isBusy = false
+            })
         }
     }
 }

@@ -40,9 +40,9 @@
 		91DEBF20249FF3E900F379DA /* BusTimetableMO+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEBF1F249FF3E900F379DA /* BusTimetableMO+Model.swift */; };
 		91DEBF2624A00D0300F379DA /* BusWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEBF2524A00D0300F379DA /* BusWebService.swift */; };
 		91DEBF2824A00F9B00F379DA /* BusRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEBF2724A00F9B00F379DA /* BusRepository.swift */; };
-		91DEBF2D24A033F100F379DA /* SwiftUIPullToRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 91DEBF2C24A033F100F379DA /* SwiftUIPullToRefresh */; };
 		91DEBF3024A09D5500F379DA /* NavigationLazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEBF2F24A09D5500F379DA /* NavigationLazyView.swift */; };
 		91DEBF3224A0AB7200F379DA /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEBF3124A0AB7200F379DA /* Date+Extensions.swift */; };
+		DD11BC5224A154BE00AF92E9 /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = DD11BC5124A154BE00AF92E9 /* SwiftUIRefresh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,9 +100,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD11BC5224A154BE00AF92E9 /* SwiftUIRefresh in Frameworks */,
 				91DEBF12249FC4C400F379DA /* Resolver in Frameworks */,
 				91A04AB7249AC35E0078942B /* Alamofire in Frameworks */,
-				91DEBF2D24A033F100F379DA /* SwiftUIPullToRefresh in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +298,7 @@
 			packageProductDependencies = (
 				91A04AB6249AC35E0078942B /* Alamofire */,
 				91DEBF11249FC4C400F379DA /* Resolver */,
-				91DEBF2C24A033F100F379DA /* SwiftUIPullToRefresh */,
+				DD11BC5124A154BE00AF92E9 /* SwiftUIRefresh */,
 			);
 			productName = RATBVSwiftUI;
 			productReference = 911DB49E2486FDD80058C15F /* RATBVSwiftUI.app */;
@@ -353,7 +353,7 @@
 			packageReferences = (
 				91A04AB5249AC35E0078942B /* XCRemoteSwiftPackageReference "Alamofire" */,
 				91DEBF10249FC4C400F379DA /* XCRemoteSwiftPackageReference "Resolver" */,
-				91DEBF2B24A033F100F379DA /* XCRemoteSwiftPackageReference "SwiftUI-PullToRefresh" */,
+				DD11BC5024A154BE00AF92E9 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
 			);
 			productRefGroup = 911DB49F2486FDD80058C15F /* Products */;
 			projectDirPath = "";
@@ -699,12 +699,12 @@
 				minimumVersion = 1.1.4;
 			};
 		};
-		91DEBF2B24A033F100F379DA /* XCRemoteSwiftPackageReference "SwiftUI-PullToRefresh" */ = {
+		DD11BC5024A154BE00AF92E9 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/phuhuynh2411/SwiftUI-PullToRefresh.git";
+			repositoryURL = "https://github.com/timbersoftware/SwiftUIRefresh.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.6;
+				minimumVersion = 0.0.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -720,10 +720,10 @@
 			package = 91DEBF10249FC4C400F379DA /* XCRemoteSwiftPackageReference "Resolver" */;
 			productName = Resolver;
 		};
-		91DEBF2C24A033F100F379DA /* SwiftUIPullToRefresh */ = {
+		DD11BC5124A154BE00AF92E9 /* SwiftUIRefresh */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 91DEBF2B24A033F100F379DA /* XCRemoteSwiftPackageReference "SwiftUI-PullToRefresh" */;
-			productName = SwiftUIPullToRefresh;
+			package = DD11BC5024A154BE00AF92E9 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */;
+			productName = SwiftUIRefresh;
 		};
 /* End XCSwiftPackageProductDependency section */
 

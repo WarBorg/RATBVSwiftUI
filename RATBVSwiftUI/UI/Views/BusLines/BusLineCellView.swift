@@ -23,7 +23,6 @@ struct BusLineCellView: View {
                 .fontWeight(.light)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
-            Divider()
         }
     }
 }

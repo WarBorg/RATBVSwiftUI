@@ -9,50 +9,59 @@
 import SwiftUI
 
 struct BusStationListView: View {
-    @ObservedObject private(set) var busStationsViewModel: BusStationsViewModel
+    @ObservedObject var busStationsViewModel: BusStationsViewModel
+    @State private var isBusy = false
     let navBarTitle: String
     
     var body: some View {
         VStack {
-            Text("Updated on \(busStationsViewModel.lastUpdateDate)")
+            Text("Updated on \(self.busStationsViewModel.lastUpdateDate)")
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.trailing)
                 .padding(.top)
-            
-            List(busStationsViewModel.busStations, id: \.id) { busStation in
-                NavigationLink(destination: self.busTimetablesView(busStation: busStation)) {
-                    Text(busStation.name)
-                        .font(.system(size: 24))
-                        .fontWeight(.medium)
-                        .lineLimit(1)
-                        .multilineTextAlignment(.leading)
+            List {
+                ForEach(self.busStationsViewModel.busStations, id: \.id) { busStation in
+                    NavigationLink(destination: self.busTimetablesView(busStation: busStation)) {
+                        VStack {
+                            Text(busStation.name)
+                                .font(.system(size: 24))
+                                .fontWeight(.medium)
+                                .lineLimit(1)
+                                .multilineTextAlignment(.leading)
+                        }
+                    }
                 }
             }
-            .navigationBarTitle(Text("\(navBarTitle) \(busStationsViewModel.direction.rawValue)"), displayMode: .inline)
+            .pullToRefresh(isShowing: $isBusy, onRefresh: {
+                self.busStationsViewModel.getBusStations(
+                    refresh: true,
+                    shouldReverseWay: false,
+                    completion: {
+                        self.isBusy = false
+                })
+            })
+        }
+        .navigationBarTitle(Text("\(navBarTitle) \(busStationsViewModel.direction.rawValue)"), displayMode: .inline)
         .navigationBarItems(
             trailing:
-                HStack(spacing: 20) {
-                    Button(action: {
-                        self.busStationsViewModel.showReverseTripStations()
-                    }) {
-                        Image(systemName: "repeat")
-                            .imageScale(.large)
-                    }
-                
-                    Button(action: {
-                        self.busStationsViewModel.downloadAllStationTimetables()
-                    }) {
-                        Image(systemName: "icloud.and.arrow.down")
-                            .imageScale(.large)
-                    }
+            HStack(spacing: 20) {
+                Button(action: {
+                    self.busStationsViewModel.showReverseTripStations()
+                }) {
+                    Image(systemName: "repeat")
+                        .imageScale(.large)
                 }
-            )
+                Button(action: {
+                    self.busStationsViewModel.downloadAllStationTimetables()
+                }) {
+                    Image(systemName: "icloud.and.arrow.down")
+                        .imageScale(.large)
+                }
+        })
+            .onAppear() {
+                self.busStationsViewModel.getBusStations(refresh: false, shouldReverseWay: false, completion: {})
         }
-        // Load data only after the view appeared
-//        .onAppear() {
-//            self.busStationsViewModel.getBusStations(isRefresh: false, shouldReverseWay: false)
-//        }
     }
 }
 
@@ -67,8 +76,8 @@ private extension BusStationListView {
 
 #if DEBUG
 /*struct BusStationListView_Previews: PreviewProvider {
-    static var previews: some View {
-        BusStationListView(navBarTitle: "Test")
-    }
-}*/
+ static var previews: some View {
+ BusStationListView(navBarTitle: "Test")
+ }
+ }*/
 #endif
