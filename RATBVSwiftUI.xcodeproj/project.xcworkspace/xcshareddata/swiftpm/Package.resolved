@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
         "state": {
           "branch": null,
-          "revision": "2777659076fda38bd4e487739ee331c7a65b5924",
-          "version": "5.2.1"
+          "revision": "9e0328127dfb801cefe8ac53a13c0c90a7770448",
+          "version": "5.4.0"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/siteline/SwiftUI-Introspect.git",
         "state": {
           "branch": null,
-          "revision": "de5c32c15ae169cfcb27397ffb2734dcd0e1e6d5",
-          "version": "0.1.0"
+          "revision": "f1ec9da347a7fbe53c520d35434f6c2295650bd5",
+          "version": "0.1.1"
         }
       },
       {
