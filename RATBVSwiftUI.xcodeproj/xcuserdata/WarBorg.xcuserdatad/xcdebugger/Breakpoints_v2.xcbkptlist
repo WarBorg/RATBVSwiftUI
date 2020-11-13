@@ -68,7 +68,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "97B23868-70DB-42C4-95EB-D5FBEB5A2714 - 4f7a9eb3fdf01126"
+                  uuid = "97B23868-70DB-42C4-95EB-D5FBEB5A2714 - c79ec13ac6a81566"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -83,7 +83,7 @@
                   offsetFromSymbolStart = "10">
                </Location>
                <Location
-                  uuid = "97B23868-70DB-42C4-95EB-D5FBEB5A2714 - c451149ce3ec61e2"
+                  uuid = "97B23868-70DB-42C4-95EB-D5FBEB5A2714 - 4cb54b15d8b46757"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -144,8 +144,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
             endingLineNumber = "60"
-            landmarkName = "busTimetablesView(busStation:)"
-            landmarkType = "7">
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -196,7 +196,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "E1FD572F-62A3-467B-B495-72D1FFF2F3E6 - 3f6a7e2be599e3dc"
+                  uuid = "E1FD572F-62A3-467B-B495-72D1FFF2F3E6 - 7ba646c4707290fb"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -211,7 +211,7 @@
                   offsetFromSymbolStart = "284">
                </Location>
                <Location
-                  uuid = "E1FD572F-62A3-467B-B495-72D1FFF2F3E6 - 57a28da92eb08671"
+                  uuid = "E1FD572F-62A3-467B-B495-72D1FFF2F3E6 - 136eb546bb5bf556"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -240,8 +240,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
             endingLineNumber = "62"
-            landmarkName = "getBusTimetables(busStationId:schedualLink:isForcedRefresh:completion:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -256,15 +256,15 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "70"
             endingLineNumber = "70"
-            landmarkName = "getBusTimetables(busStationId:schedualLink:isForcedRefresh:completion:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "00FA49D0-A4B6-43D7-A45E-45E11A442384"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RATBVSwiftUI/Services/BusRepository.swift"
@@ -272,8 +272,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
             endingLineNumber = "68"
-            landmarkName = "getBusTimetables(busStationId:schedualLink:isForcedRefresh:completion:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

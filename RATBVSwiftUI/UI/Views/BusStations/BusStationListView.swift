@@ -59,8 +59,8 @@ struct BusStationListView: View {
                         .imageScale(.large)
                 }
         })
-            .onAppear() {
-                self.busStationsViewModel.getBusStations(refresh: false, shouldReverseWay: false, completion: {})
+        .onAppear() {
+            self.busStationsViewModel.getBusStations(refresh: false, shouldReverseWay: false, completion: {})
         }
     }
 }
